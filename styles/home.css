@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+}
+header{
+    background-color: #1a75cf;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+nav ul{
+    display: flex;
+    background-color: blueviolet;
+}
+.categories{
+    background-color: rgb(192, 204, 88);
+}
+.products-carousel{
+    background-color: aquamarine;
+}
