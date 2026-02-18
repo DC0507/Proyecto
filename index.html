@@ -1,58 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clonemart</title>
-    <link rel="stylesheet" href="./styles/home.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./styles/home.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <p>
-                Clonemart
-            </p>
-            <div class="form">
-                <input type="search" name="search" id="search">
-            </div>
-            <ul>
-                <li>Mi Cuenta</li>
-                <li>Mis Pedidos</li>
-                <li>Mi Carrito</li>
-            </ul>
-        </nav>
+      <nav>
+        <img src="./media/images/logo.png" alt="" id="logo" />
+        <div class="form">
+          <input type="search" name="search" id="search" />
+        </div>
+        <ul>
+          <li>Mi Cuenta</li>
+          <li>Mis Pedidos</li>
+          <li>Mi Carrito</li>
+        </ul>
+      </nav>
     </header>
-    <article class="categories">
-        <div class="card">
-            <img src="" alt="">
-            <p><b>Categoria#1</b></p>
-        </div>
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Categoria#2</b></p>
-        </div>
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Categoria#3</b></p>
-        </div>
+    <article class="categories-carousel">
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/steak.gif"
+          alt=""
+        />
+        <p><b>Carnes y Pescado</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/fruit.gif"
+          alt=""
+        />
+        <p><b>Frutas y Verduras</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/bread.gif"
+          alt=""
+        />
+        <p><b>Panadería</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/home.gif"
+          alt=""
+        />
+        <p><b>Hogar</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/pet.gif"
+          alt=""
+        />
+        <p><b>Mascotas</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/toy.gif"
+          alt=""
+        />
+        <p><b>Juguetes</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/weightlifting.gif"
+          alt=""
+        />
+        <p><b>Deportes</b></p>
+      </div>
+      <div class="category-card">
+        <img
+          class="category-icon"
+          src="./media/images/categories/computer.gif"
+          alt=""
+        />
+        <p><b>Electrónica</b></p>
+      </div>
     </article>
     <article class="products-carousel">
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Producto</b></p>
-        </div>
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Producto</b></p>
-        </div>
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Producto</b></p>
-        </div>
-                <div class="card">
-            <img src="" alt="">
-            <p><b>Producto</b></p>
-        </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="./media/images/products/chuleta-cerdo.png"
+          alt=""
+        />
+        <p>
+          <b>Chuleta de Cerdo</b>
+          <br /><b>Precio:</b>₡12000 <br /><button class="product-btn-add">
+            +Agregar
+          </button>
+          <button class="product-btn-details">Detalles</button>
+        </p>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="./media/images/products/muslo-pollo.png"
+          alt=""
+        />
+        <p>
+          <b>Muslo Entero</b> <br /><b>Precio:</b>₡12000 <br /><button
+            class="product-btn-add"
+          >
+            +Agregar
+          </button>
+          <button class="product-btn-details">Detalles</button>
+        </p>
+      </div>
+      <div class="product-card">
+        <img
+          class="product-img"
+          src="./media/images/products/pescado-entero.png"
+          alt=""
+        />
+        <p>
+          <b>Pescado Entero</b> <br /><b>Precio:</b>₡12000 <br /><button
+            class="product-btn-add"
+          >
+            +Agregar
+          </button>
+          <button class="product-btn-details">Detalles</button>
+        </p>
+      </div>
     </article>
-</body>
+    <footer>
+      © 2026 Copyright. Todos los derechos reservados David&Saul's Develop
+      Systems 2026
+    </footer>
+  </body>
 </html>
