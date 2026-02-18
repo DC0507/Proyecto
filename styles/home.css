@@ -67,8 +67,10 @@ nav {
 }
 .products-carousel {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  gap: 100px;
+  gap: 20px;
+  margin: 20px auto;
 }
 .product-card {
   text-align: center;
