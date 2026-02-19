@@ -43,6 +43,9 @@ nav {
   text-decoration: none;
   padding: 10px;
 }
+.home-item:visited{
+  color: inherit;
+}
 .home-item:hover {
   border-radius: 15px;
   background-color: rgba(0, 0, 255, 0.397);
@@ -97,5 +100,8 @@ nav {
 }
 footer {
   background-color: #1a75cf;
+  display: flex;
+  align-items: center;
+  height: 40px;
   margin-top: auto;
 }
