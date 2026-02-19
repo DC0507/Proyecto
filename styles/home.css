@@ -83,18 +83,30 @@ nav {
   border-radius: 10px;
   margin: 15px 0 0;
   padding: 15px;
+  width: 180px;
 }
 .product-img {
   width: 100px;
-  border-radius: 10px;
+  height: 100px;
+  object-fit: contain;
+}
+.product-details{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.product-name, .product-price{
+  font-weight: bolder;
 }
 .product-btn-add {
   background-color: #1a75cf;
-  font-weight: bolder;
+  color: azure;
+  font-weight: bold;
   border-radius: 10px;
 }
 .product-btn-details {
-  background-color: #adb6be;
+  background-color: #3c4446;
+  color: azure;
   font-weight: bolder;
   border-radius: 10px;
 }
