@@ -2,7 +2,7 @@
 import { supabase } from "./supabase.js";
 
 // Elementos del DOM que usaremos para mostrar el contenido
-const productContainer = document.querySelector(".products-carousel");
+const productContainer = document.querySelector(".products-container");
 const categoryTitle = document.querySelector("#category-title");
 const categoryEmpty = document.querySelector("#category-empty");
 

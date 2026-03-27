@@ -104,13 +104,23 @@ nav {
   background-color: #1a75cf;
   transform: scale(1.15);
 }
+.products-container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 20px auto;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
 .product-card {
   text-align: center;
   border: 1px solid gray;
   border-radius: 10px;
   margin: 15px 0 0;
   padding: 15px;
-  width: 100%;
+  width: min(220px, 100%);
   min-width: 0;
   background-color: white;
 }
@@ -151,12 +161,26 @@ footer {
   .products-carousel {
     width: min(760px, calc(100% - 24px));
   }
+
+  .products-container {
+    width: min(760px, calc(100% - 24px));
+  }
 }
 
 @media (max-width: 639px) {
   .products-carousel {
     width: calc(100% - 20px);
     padding-inline: 10px;
+  }
+
+  .products-container {
+    width: calc(100% - 20px);
+    padding-inline: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 320px;
   }
 }
 
