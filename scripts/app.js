@@ -1,4 +1,5 @@
 import { supabase } from "./supabase.js";
+import { setupAddToCartButtons } from "./carrito.js";
 
 const productContainer = document.querySelector(".products-carousel");
 const AUTO_SLIDE_MS = 4000;
@@ -66,7 +67,7 @@ function renderProducts(products) {
 
     track.appendChild(card);
   });
-
+  setupAddToCartButtons();
   setupCarousel();
 }
 
