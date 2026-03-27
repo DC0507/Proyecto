@@ -18,16 +18,90 @@
           <input type="search" name="search" id="search" />
         </div>
         <ul id="home-menu">
-          <a class="home-item" href="./misProductos.html"><li>Mis Productos</li></a
+          <a class="home-item" href="./misProductos.html"
+            ><li>Mis Productos</li></a
           ><a class="home-item" href="./miCuenta.html"><li>Mi Cuenta</li></a
-          ><a class="home-item" href="./misPedidos.html"> <li>Mis Pedidos</li> </a
+          ><a class="home-item" href="./misPedidos.html">
+            <li>Mis Pedidos</li> </a
           ><a class="home-item" href="./miCarrito.html"><li>Mi Carrito</li></a>
         </ul>
       </nav>
     </header>
-    </article>
+    <main
+      class="cart-container"
+      style="
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        min-height: 60vh;
+      "
+    >
+      <h1>Tu Carrito de Compras</h1>
+
+      <div id="cart-content">
+        <table
+          id="cart-table"
+          style="width: 100%; border-collapse: collapse; margin-top: 1rem"
+        >
+          <thead>
+            <tr style="border-bottom: 2px solid #3ecf8e; text-align: left">
+              <th style="padding: 10px">Producto</th>
+              <th style="padding: 10px">Precio</th>
+              <th style="padding: 10px">Cantidad</th>
+              <th style="padding: 10px">Subtotal</th>
+              <th style="padding: 10px">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Items will be injected here -->
+          </tbody>
+        </table>
+
+        <div
+          id="cart-summary"
+          style="
+            text-align: right;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+          "
+        >
+          <h2 id="cart-total">Total: ₡0</h2>
+          <button
+            id="checkout-btn"
+            style="
+              background: #3ecf8e;
+              color: white;
+              border: none;
+              padding: 12px 24px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 1.1rem;
+              margin-top: 10px;
+            "
+          >
+            Continuar al Pago
+          </button>
+          <button
+            id="clear-cart-btn"
+            style="
+              background: #e63946;
+              color: white;
+              border: none;
+              padding: 12px 24px;
+              border-radius: 5px;
+              cursor: pointer;
+              margin-left: 10px;
+            "
+          >
+            Vaciar Carrito
+          </button>
+        </div>
+      </div>
+    </main>
     <footer>
       © 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
+    <script type="module" src="../scripts/miCarritoLista.js"></script>
   </body>
 </html>
