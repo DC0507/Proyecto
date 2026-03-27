@@ -92,7 +92,6 @@ function renderProducts(products) {
         <button class="product-btn-details">Detalles</button>
       </div>
     `;
-    track.appendChild(card);
     productContainer.appendChild(card);
   });
   setupAddToCartButtons();
