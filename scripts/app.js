@@ -62,7 +62,7 @@ function renderProducts(products) {
         <span class="product-price">Precio: ₡${product.precio || "0"}</span>
       </p>
       <button class="product-btn-add">+Agregar</button>
-      <button class="product-btn-details">Detalles</button>
+      <button class="product-btn-details">+Favorito</button>
     `;
 
     track.appendChild(card);
