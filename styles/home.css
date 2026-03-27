@@ -70,20 +70,49 @@ nav {
   border: 2px solid rgb(158, 207, 24);
 }
 .products-carousel {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:space-around;
-  gap: 20px;
+  width: min(1120px, calc(100% - 32px));
   margin: 20px auto;
+  padding: 12px 12px 20px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #f5f9ff 0%, #e6f0fb 100%);
+  box-shadow: 0 12px 30px rgba(26, 117, 207, 0.12);
+}
+.products-carousel-viewport {
+  overflow: hidden;
+}
+.products-carousel-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+.products-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.products-carousel-dot {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 999px;
+  background-color: rgba(26, 117, 207, 0.25);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.products-carousel-dot.is-active {
+  background-color: #1a75cf;
+  transform: scale(1.15);
 }
 .product-card {
   text-align: center;
-  max-width: fit-content;
   border: 1px solid gray;
   border-radius: 10px;
   margin: 15px 0 0;
   padding: 15px;
-  width: 180px;
+  width: 100%;
+  min-width: 0;
+  background-color: white;
 }
 .product-img {
   width: 100px;
@@ -116,5 +145,18 @@ footer {
   align-items: center;
   height: 40px;
   margin-top: auto;
+}
+
+@media (max-width: 959px) {
+  .products-carousel {
+    width: min(760px, calc(100% - 24px));
+  }
+}
+
+@media (max-width: 639px) {
+  .products-carousel {
+    width: calc(100% - 20px);
+    padding-inline: 10px;
+  }
 }
 
