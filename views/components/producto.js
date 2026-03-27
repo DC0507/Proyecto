@@ -7,7 +7,7 @@ export function crearProducto(producto) {
   // Imagen
   const img = document.createElement("img");
   img.classList.add("product-img");
-  img.src = producto.imagen || "../../media_images/default-product.png"; // usa imagen por defecto si el producto no tiene 
+  img.src = producto.imagen || "../media/images/products/default-product.webp"; // usa imagen por defecto si el producto no tiene 
 
   // Contenedor de detalles
   const detalles = document.createElement("p");
@@ -23,15 +23,10 @@ export function crearProducto(producto) {
   precio.classList.add("product-price");
   precio.textContent = `Precio: ₡${producto.precio}`;
   
-  /*
-  
   // Peso (es opcional por el momento)
-
   const peso = document.createElement("span");
   peso.classList.add("product-weight");
   peso.textContent = `Peso: ${producto.peso} kg`;
-  
-  */
 
   // Botón agregar
   const btnAgregar = document.createElement("button");

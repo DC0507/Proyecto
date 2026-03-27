@@ -12,8 +12,11 @@
         <a href="./index.html"
           ><img src="./media/images/logo.png" alt="" id="logo"
         /></a>
-        <div class="form">
-          <input type="search" name="search" id="search" />
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+          <img src="../media/images/loop.png" class="search-icon" /> 
+          <input type="search" id="search" placeholder="Buscar productos..." />
+          <ul id="sugerencias" class="sugerencias"></ul>
         </div>
         <ul id="home-menu">
           <a class="home-item" href="./views/misProductos.html"
@@ -102,86 +105,7 @@
         <p><b>Electrónica</b></p>
       </div>
     </article>
-    <article class="products-carousel">
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/chuleta-cerdo.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Chuleta de Cerdo</span>
-          <span class="product-price">Precio: ₡3500</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/muslo-pollo.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Muslo Entero</span>
-          <span class="product-price">Precio: ₡4600</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/pescado-entero.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Pescado Entero</span>
-          <span class="product-price">Precio: ₡5000</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/manza-roja.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Manzana Roja</span>
-          <span class="product-price">Precio: ₡450</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/piña.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Piña</span>
-          <span class="product-price">Precio: ₡1000</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-      <div class="product-card">
-        <img
-          class="product-img"
-          src="./media/images/products/cebolla.png"
-          alt=""
-        />
-        <p class="product-details">
-          <span class="product-name">Cebolla</span>
-          <span class="product-price">Precio: ₡350</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
-    </article>
+    <main id="contenedor-productos"></main>
     <footer>
       © 2026 Copyright.  Todos los derechos reservados Clonemart 2026
     </footer>
