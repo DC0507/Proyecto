@@ -1,16 +1,65 @@
-//Crear un componente de producto que reciba un objeto con las propiedades: 
-// nombre, precio y peso. El componente debe mostrar su nombre, precio peso. 
-// Además, debe incluir los botones "Agregar al carrito" y "Ver detalles" que al hacer clic 
+export function crearProducto(producto) {
+  
+  // Crear contenedor principal
+  const div = document.createElement("div");
+  div.classList.add("product-card");
 
-<div class="product-card">
-        <img
-          class="product-img"
-          src="#"
-        />
-        <p class="product-details">
-          <span class="product-name">NOMBRE</span>
-          <span class="product-price">Precio: ₡PRECIO</span>
-        </p>
-        <button class="product-btn-add">+Agregar</button>
-        <button class="product-btn-details">Detalles</button>
-      </div>
+  // Imagen
+  const img = document.createElement("img");
+  img.classList.add("product-img");
+  img.src = producto.imagen || "../../media_images/default-product.png"; // usa imagen por defecto si el producto no tiene 
+
+  // Contenedor de detalles
+  const detalles = document.createElement("p");
+  detalles.classList.add("product-details");
+
+  // Nombre
+  const nombre = document.createElement("span");
+  nombre.classList.add("product-name");
+  nombre.textContent = producto.nombre;
+
+  // Precio
+  const precio = document.createElement("span");
+  precio.classList.add("product-price");
+  precio.textContent = `Precio: ₡${producto.precio}`;
+  
+  /*
+  
+  // Peso (es opcional por el momento)
+
+  const peso = document.createElement("span");
+  peso.classList.add("product-weight");
+  peso.textContent = `Peso: ${producto.peso} kg`;
+  
+  */
+
+  // Botón agregar
+  const btnAgregar = document.createElement("button");
+  btnAgregar.classList.add("product-btn-add");
+  btnAgregar.textContent = "+Agregar";
+  btnAgregar.addEventListener("click", () => {
+    console.log("Producto agregado:", producto);
+    // Aún falta conectar con el carrito
+  });
+
+  // Botón detalles
+  const btnDetalles = document.createElement("button");
+  btnDetalles.classList.add("product-btn-details");
+  btnDetalles.textContent = "Detalles";
+  btnDetalles.addEventListener("click", () => {
+    console.log("Ver detalles de:", producto);
+    // Aún falta mostrar una pantalla emergente con la información del producto
+  });
+
+  // Armar estructura
+  detalles.appendChild(nombre);
+  detalles.appendChild(precio);
+  detalles.appendChild(peso);
+
+  div.appendChild(img);
+  div.appendChild(detalles);
+  div.appendChild(btnAgregar);
+  div.appendChild(btnDetalles);
+
+  return div;
+}
