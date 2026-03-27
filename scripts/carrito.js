@@ -1,63 +1,66 @@
-// cart.js
 import { supabase } from "./supabase.js";
 
 export async function setupAddToCartButtons() {
-    const addButtons = document.querySelectorAll(".product-btn-add");
-
-    addButtons.forEach(button => {
-        // Remove existing listener to prevent double triggers if re-rendered
+    document.querySelectorAll(".product-btn-add").forEach(button => {
+        // Limpiar listeners previos
         button.replaceWith(button.cloneNode(true));
     });
 
-    // Re-select and add logic
     document.querySelectorAll(".product-btn-add").forEach(button => {
         button.addEventListener("click", async (e) => {
             const card = e.target.closest(".product-card");
-            const productId = card.dataset.productId;
-            const productName = card.querySelector(".product-name").innerText;
-            const productPriceStr = card.querySelector(".product-price").innerText;
             
-            // Extract numeric value from "Precio: ₡5000"
+            // BUSQUEDA FLEXIBLE: Buscamos las clases sin importar la estructura exacta
+            const nameEl = card.querySelector(".product-name");
+            // Buscamos .product-price o .price-value para cubrir ambos archivos
+            const priceEl = card.querySelector(".product-price") || card.querySelector(".price-value");
+
+            if (!nameEl || !priceEl) {
+                console.error("No se encontraron los datos del producto en la tarjeta.");
+                return;
+            }
+
+            const productId = card.dataset.productId;
+            const productName = nameEl.innerText;
+            const productPriceStr = priceEl.innerText;
+            
+            // Extraer solo números (quita ₡, "Precio:", etc)
             const productPrice = parseFloat(productPriceStr.replace(/[^0-9.-]+/g, ""));
 
-            // 1. Check if user is logged in
+            // 1. Verificar sesión
             const { data: { session } } = await supabase.auth.getSession();
-            
             if (!session) {
-                alert("Debes iniciar sesión para agregar productos al carrito.");
+                alert("Inicia sesión para comprar.");
                 window.location.href = "../views/login.html";
                 return;
             }
 
-            // 2. Add to Cart Logic (Local Storage approach for speed)
-            const cartItem = {
-                id: productId,
-                nombre: productName,
-                precio: productPrice,
-                cantidad: 1
-            };
-
+            // 2. Guardar en LocalStorage
             let cart = JSON.parse(localStorage.getItem("carrito")) || [];
-            
-            // Check if product already exists
             const existingIndex = cart.findIndex(item => item.id === productId);
+
             if (existingIndex > -1) {
                 cart[existingIndex].cantidad += 1;
             } else {
-                cart.push(cartItem);
+                cart.push({
+                    id: productId,
+                    nombre: productName,
+                    precio: productPrice,
+                    cantidad: 1
+                });
             }
 
             localStorage.setItem("carrito", JSON.stringify(cart));
 
-            // 3. Visual feedback
+            // 3. Feedback visual
             const originalText = button.innerText;
             button.innerText = "¡Agregado!";
-            button.style.backgroundColor = "#2ecc71";
+            button.classList.add("btn-success"); // Si usas Bootstrap
             
             setTimeout(() => {
                 button.innerText = originalText;
-                button.style.backgroundColor = "";
-            }, 1500);
+                button.classList.remove("btn-success");
+            }, 1000);
         });
     });
 }
