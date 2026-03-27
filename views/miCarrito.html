@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Carrito</title>
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/miCarrito.css" />
     <script type="module" src="../scripts/auth.js"></script>
   </head>
   <body>
@@ -27,29 +28,18 @@
         </ul>
       </nav>
     </header>
-    <main
-      class="cart-container"
-      style="
-        max-width: 1000px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-        min-height: 60vh;
-      "
-    >
+    <main class="cart-container">
       <h1>Tu Carrito de Compras</h1>
 
       <div id="cart-content">
-        <table
-          id="cart-table"
-          style="width: 100%; border-collapse: collapse; margin-top: 1rem"
-        >
+        <table id="cart-table">
           <thead>
-            <tr style="border-bottom: 2px solid #3ecf8e; text-align: left">
-              <th style="padding: 10px">Producto</th>
-              <th style="padding: 10px">Precio</th>
-              <th style="padding: 10px">Cantidad</th>
-              <th style="padding: 10px">Subtotal</th>
-              <th style="padding: 10px">Acción</th>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acci&oacute;n</th>
             </tr>
           </thead>
           <tbody id="cart-items-body">
@@ -57,50 +47,19 @@
           </tbody>
         </table>
 
-        <div
-          id="cart-summary"
-          style="
-            text-align: right;
-            margin-top: 2rem;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-          "
-        >
-          <h2 id="cart-total">Total: ₡0</h2>
-          <button
-            id="checkout-btn"
-            style="
-              background: #3ecf8e;
-              color: white;
-              border: none;
-              padding: 12px 24px;
-              border-radius: 5px;
-              cursor: pointer;
-              font-size: 1.1rem;
-              margin-top: 10px;
-            "
-          >
+        <div id="cart-summary">
+          <h2 id="cart-total">Total: &#8353;0</h2>
+          <button id="checkout-btn">
             Continuar al Pago
           </button>
-          <button
-            id="clear-cart-btn"
-            style="
-              background: #e63946;
-              color: white;
-              border: none;
-              padding: 12px 24px;
-              border-radius: 5px;
-              cursor: pointer;
-              margin-left: 10px;
-            "
-          >
+          <button id="clear-cart-btn">
             Vaciar Carrito
           </button>
         </div>
       </div>
     </main>
     <footer>
-      © 2026 Copyright. Todos los derechos reservados Clonemart 2026
+      &copy; 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
     <script type="module" src="../scripts/miCarritoLista.js"></script>
   </body>
