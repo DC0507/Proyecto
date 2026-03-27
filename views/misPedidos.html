@@ -17,16 +17,26 @@
           <input type="search" name="search" id="search" />
         </div>
         <ul id="home-menu">
-          <a class="home-item" href="./misProductos.html"><li>Mis Productos</li></a
+          <a class="home-item" href="./misProductos.html"
+            ><li>Mis Productos</li></a
           ><a class="home-item" href="./miCuenta.html"><li>Mi Cuenta</li></a
-          ><a class="home-item" href="./misPedidos.html"> <li>Mis Pedidos</li> </a
+          ><a class="home-item" href="./misPedidos.html">
+            <li>Mis Pedidos</li> </a
           ><a class="home-item" href="./miCarrito.html"><li>Mi Carrito</li></a>
         </ul>
       </nav>
     </header>
-    </article>
+    <!-- Main Content Area -->
+    <main id="pedidos-container">
+      <h1>Mis Pedidos</h1>
+      <div id="orders-list">
+        <p class="loading">Cargando tus pedidos...</p>
+      </div>
+    </main>
     <footer>
       © 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
+    <script type="module" src="../scripts/auth.js"></script>
+    <script type="module" src="../scripts/misPedidos.js"></script>
   </body>
 </html>

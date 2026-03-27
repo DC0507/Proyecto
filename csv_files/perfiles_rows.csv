@@ -1,6 +1,5 @@
 id,nombre,apellido,correo,rol,direccion,telefono,created_at
-a1111111-1111-1111-1111-111111111111,David,Calderon,david@minimarket.com,administrador,Calle Principal 10,555-0011,2026-03-27 03:57:29.544647+00
-b2222222-2222-2222-2222-222222222222,Saul,Gonzales,saul@minimarket.com,administrador,Avenida Central 20,555-0022,2026-03-27 03:57:29.544647+00
-c3333333-3333-3333-3333-333333333333,Maria,Lopez,cliente.test@email.com,cliente,Pasaje Olivos 5,555-0033,2026-03-27 03:57:29.544647+00
-d4444444-4444-4444-4444-444444444444,Roberto,Guzman,roberto.g@email.com,cliente,Urbanizacion Sol 12,555-0044,2026-03-27 03:57:29.544647+00
-e5555555-5555-5555-5555-555555555555,Elena,Morales,elena.m@email.com,cliente,Residencial Luna 8,555-0055,2026-03-27 03:57:29.544647+00
+022cad58-baf0-416c-9e03-69ba71558937,Lola,Mento,lola.mento@cliente.com,cliente,"Residencial Los Álamos, Cartago",8888-4444,2026-03-27 15:09:33.863342+00
+37ed7c18-4131-413f-b835-6cca22255fe0,David,Calderón,david.calderon2@minimarket.com,administrador,"Calle 5, Heredia",8888-2222,2026-03-27 15:04:29.86013+00
+4ba9fa91-d751-41eb-9ccc-88aac104ee13,Allan,Brito,allan.brito@cliente.com,cliente,"Barrio Luján, San José",8888-3333,2026-03-27 15:04:29.86013+00
+c0e5551a-a1b3-461f-a706-a20f25dbefe7,Saúl,Gonzáles,saul.gonzales@minimarket.com,administrador,"Av. Central 123, San José",8888-1111,2026-03-27 15:04:29.86013+00

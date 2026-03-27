@@ -87,46 +87,51 @@ create table
   );
 
 INSERT INTO
-  auth.users (
+  public.perfiles (
     id,
-    email,
-    encrypted_password,
-    email_confirmed_at,
-    raw_user_meta_data
+    nombre,
+    apellido,
+    correo,
+    rol,
+    direccion,
+    telefono
   )
 VALUES
   (
-    'a1111111-1111-1111-1111-111111111111',
-    'david@minimarket.com',
-    crypt ('password123', gen_salt ('bf')),
-    now (),
-    '{"nombre": "David", "apellido": "Calderon"}'
+    'c0e5551a-a1b3-461f-a706-a20f25dbefe7',
+    'Saúl',
+    'Gonzáles',
+    'saul.gonzales@minimarket.com',
+    'vendedor', -- Adjusted role based on email domain
+    'Av. Central 123, San José',
+    '8888-1111'
   ),
   (
-    'b2222222-2222-2222-2222-222222222222',
-    'saul@minimarket.com',
-    crypt ('password123', gen_salt ('bf')),
-    now (),
-    '{"nombre": "Saul", "apellido": "Gonzales"}'
+    '37ed7c18-4131-413f-b835-6cca22255fe0',
+    'David',
+    'Calderón',
+    'david.calderon2@minimarket.com',
+    'vendedor',
+    'Calle 5, Heredia',
+    '8888-2222'
   ),
   (
-    'c3333333-3333-3333-3333-333333333333',
-    'cliente.test@email.com',
-    crypt ('password123', gen_salt ('bf')),
-    now (),
-    '{"nombre": "Maria", "apellido": "Lopez"}'
+    '4ba9fa91-d751-41eb-9ccc-88aac104ee13',
+    'Allan',
+    'Brito',
+    'allan.brito@cliente.com',
+    'cliente',
+    'Barrio Luján, San José',
+    '8888-3333'
   ),
   (
-    'd4444444-4444-4444-4444-444444444444',
-    'roberto.g@email.com',
-    crypt ('robertoPass2024', gen_salt ('bf')),
-    now (),
-    '{"nombre": "Roberto", "apellido": "Guzman"}'
-  ),
-  (
-    'e5555555-5555-5555-5555-555555555555',
-    'elena.m@email.com',
-    crypt ('secureElena!99', gen_salt ('bf')),
-    now (),
-    '{"nombre": "Elena", "apellido": "Morales"}'
+    '022cad58-baf0-416c-9e03-69ba71558937',
+    'Lola',
+    'Mento',
+    'lola.mento@cliente.com',
+    'cliente',
+    'Residencial Los Álamos, Cartago',
+    '8888-4444'
   );
+
+  
