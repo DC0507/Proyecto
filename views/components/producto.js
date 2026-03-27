@@ -39,7 +39,7 @@ export function crearProducto(producto) {
   btnAgregar.textContent = "+Agregar";
   btnAgregar.addEventListener("click", () => {
     console.log("Producto agregado:", producto);
-    // Aún falta conectar con el carrito
+  localStorage.setItem("carrito", JSON.stringify(carrito)); // conecta al carrito
   });
 
   // Botón detalles
