@@ -35,7 +35,7 @@ function loadCart() {
                 </td>
                 <td style="padding: 15px;">${formatCRC(subtotal)}</td>
                 <td style="padding: 15px;">
-                    <button onclick="window.removeItem(${index})" style="color: #e63946; border: none; background: none; cursor: pointer;">Eliminar</button>
+                    <button onclick="window.removeItem(${index})" style="color: #e63946; border: none; background: none; cursor: pointer;">X</button>
                 </td>
             </tr>
         `;
