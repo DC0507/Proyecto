@@ -130,14 +130,12 @@ footer {
   transform: translateY(-50%);
   width: 16px;   
   height: 16px;
+  pointer-events: none;
 }
 
 #search {
   width: 100%;
   padding: 8px 30px 8px 8px; 
-}
-
-#search {
   border-radius: 20px;
   border: 2px solid #ccc;
 }
@@ -148,4 +146,29 @@ footer {
   justify-content: space-around;
   gap: 40px;
   margin: auto 25px;
+}
+
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.45); /* Ta mejor la sombra que el borde */
+  border-radius: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  z-index: 1000;
+}
+
+.sugerencias li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugerencias li:hover {
+  background: #f2f2f2;
 }

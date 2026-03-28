@@ -7,11 +7,17 @@ export function crearProducto(producto) {
   // Imagen
   const img = document.createElement("img");
   img.classList.add("product-img");
-  img.src = producto.imagen || "../media/images/products/default-product.webp"; // usa imagen por defecto si el producto no tiene 
+  img.src = `../media/images/products/${producto.id}.webp` || "../media/images/products/default-product.webp"; // usa imagen por defecto si el producto no tiene 
 
   // Contenedor de detalles
   const detalles = document.createElement("p");
   detalles.classList.add("product-details");
+
+  // ID
+  const id = document.createElement("span");
+  id.classList.add("product-id");
+  id.textContent = `ID: ${producto.id}`;
+  id.hidden = true; // no muestra el id en pantalla
 
   // Nombre
   const nombre = document.createElement("span");
@@ -47,6 +53,7 @@ export function crearProducto(producto) {
   });
 
   // Armar estructura
+  detalles.appendChild(id)
   detalles.appendChild(nombre);
   detalles.appendChild(precio);
   detalles.appendChild(peso);
