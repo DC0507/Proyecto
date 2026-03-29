@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Carrito</title>
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/miCarrito.css" />
+    <script type="module" src="../scripts/auth.js"></script>
   </head>
   <body>
     <header>
@@ -20,17 +22,48 @@
             <ul id="sugerencias" class="sugerencias"></ul>
         </div>
         <ul id="home-menu">
-          <a class="home-item" href="./misProductos.html"><li>Mis Productos</li></a
+          <a class="home-item" href="./misProductos.html"
+            ><li>Mis Productos</li></a
           ><a class="home-item" href="./miCuenta.html"><li>Mi Cuenta</li></a
-          ><a class="home-item" href="./misPedidos.html"> <li>Mis Pedidos</li> </a
+          ><a class="home-item" href="./misPedidos.html">
+            <li>Mis Pedidos</li> </a
           ><a class="home-item" href="./miCarrito.html"><li>Mi Carrito</li></a>
         </ul>
       </nav>
     </header>
-    </article>
+    <main class="cart-container">
+      <h1>Tu Carrito de Compras</h1>
+
+      <div id="cart-content">
+        <table id="cart-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th>Acci&oacute;n</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Items will be injected here -->
+          </tbody>
+        </table>
+
+        <div id="cart-summary">
+          <h2 id="cart-total">Total: &#8353;0</h2>
+          <button id="checkout-btn">
+            Continuar al Pago
+          </button>
+          <button id="clear-cart-btn">
+            Vaciar Carrito
+          </button>
+        </div>
+      </div>
+    </main>
     <footer>
-      © 2026 Copyright. Todos los derechos reservados Clonemart 2026
+      &copy; 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
-    <script src="../scripts/carrito.js"></script>
+    <script type="module" src="../scripts/miCarritoLista.js"></script>
   </body>
 </html>

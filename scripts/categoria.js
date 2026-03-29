@@ -1,8 +1,9 @@
 // Importamos la configuración de Supabase para conectar con la base de datos
 import { supabase } from "./supabase.js";
+import { setupAddToCartButtons } from "./carrito.js";
 
 // Elementos del DOM que usaremos para mostrar el contenido
-const productContainer = document.querySelector(".products-carousel");
+const productContainer = document.querySelector(".products-container");
 const categoryTitle = document.querySelector("#category-title");
 const categoryEmpty = document.querySelector("#category-empty");
 
@@ -91,9 +92,9 @@ function renderProducts(products) {
         <button class="product-btn-details">Detalles</button>
       </div>
     `;
-
     productContainer.appendChild(card);
   });
+  setupAddToCartButtons();
 }
 
 // Función principal que inicializa la página
