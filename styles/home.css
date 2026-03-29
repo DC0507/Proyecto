@@ -149,11 +149,12 @@ nav {
   font-weight: bold;
   border-radius: 10px;
 }
-.product-btn-details {
-  background-color: #3c4446;
-  color: azure;
+.product-btn-favorite {
+  background-color: #dac71e;
+  color: #ffffff;
   font-weight: bolder;
   border-radius: 10px;
+  margin-left: 5px;
 }
 footer {
   background-color: #1a75cf;

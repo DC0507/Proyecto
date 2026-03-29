@@ -42,7 +42,7 @@ export function crearProducto(producto) {
   // Botón favorito
   const btnFavorito = document.createElement("button");
   btnFavorito.classList.add("product-btn-favorite");
-  btnFavorito.textContent = "Favorito";
+  btnFavorito.textContent = "+Favorito";
   btnFavorito.addEventListener("click", () => {
     console.log("Producto marcado como favorito:", producto);
   });
