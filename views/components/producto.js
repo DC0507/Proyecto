@@ -1,13 +1,14 @@
 export function crearProducto(producto) {
-  
   // Crear contenedor principal
-  const div = document.createElement("div");
-  div.classList.add("product-card");
+  const cardContainer = document.createElement("div");
+  cardContainer.classList.add("product-card");
 
   // Imagen
-  const img = document.createElement("img");
-  img.classList.add("product-img");
-  img.src = producto.imagen || "../../media_images/default-product.png"; // usa imagen por defecto si el producto no tiene 
+  const cardImg = document.createElement("img");
+  cardImg.classList.add("product-img");
+  cardImg.src =
+    `../../media/images/products/${producto.id}.webp` ||
+    "../../media/images/products/default-product.png"; // usa imagen por defecto si el producto no tiene
 
   // Contenedor de detalles
   const detalles = document.createElement("p");
@@ -22,16 +23,12 @@ export function crearProducto(producto) {
   const precio = document.createElement("span");
   precio.classList.add("product-price");
   precio.textContent = `Precio: ₡${producto.precio}`;
-  
-  /*
-  
-  // Peso (es opcional por el momento)
+
+  // Peso
 
   const peso = document.createElement("span");
   peso.classList.add("product-weight");
   peso.textContent = `Peso: ${producto.peso} kg`;
-  
-  */
 
   // Botón agregar
   const btnAgregar = document.createElement("button");
@@ -39,16 +36,15 @@ export function crearProducto(producto) {
   btnAgregar.textContent = "+Agregar";
   btnAgregar.addEventListener("click", () => {
     console.log("Producto agregado:", producto);
-  localStorage.setItem("carrito", JSON.stringify(carrito)); // conecta al carrito
+    localStorage.setItem("carrito", JSON.stringify(carrito)); // conecta al carrito
   });
 
-  // Botón detalles
-  const btnDetalles = document.createElement("button");
-  btnDetalles.classList.add("product-btn-details");
-  btnDetalles.textContent = "Detalles";
-  btnDetalles.addEventListener("click", () => {
-    console.log("Ver detalles de:", producto);
-    // Aún falta mostrar una pantalla emergente con la información del producto
+  // Botón favorito
+  const btnFavorito = document.createElement("button");
+  btnFavorito.classList.add("product-btn-favorite");
+  btnFavorito.textContent = "Favorito";
+  btnFavorito.addEventListener("click", () => {
+    console.log("Producto marcado como favorito:", producto);
   });
 
   // Armar estructura
@@ -56,10 +52,10 @@ export function crearProducto(producto) {
   detalles.appendChild(precio);
   detalles.appendChild(peso);
 
-  div.appendChild(img);
-  div.appendChild(detalles);
-  div.appendChild(btnAgregar);
-  div.appendChild(btnDetalles);
+  cardContainer.appendChild(cardImg);
+  cardContainer.appendChild(detalles);
+  cardContainer.appendChild(btnAgregar);
+  cardContainer.appendChild(btnFavorito);
 
-  return div;
+  return cardContainer;
 }
