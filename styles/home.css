@@ -32,6 +32,12 @@ nav {
 }
 #search {
   border-radius: 5px;
+  background-image: url('../media/images/loop.png');
+  background-position: 158px 7px; 
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  text-align: center;
+  color: black;
 }
 #home-menu {
   display: flex;
