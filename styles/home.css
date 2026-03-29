@@ -39,7 +39,7 @@ nav {
   text-align: center;
   color: black;
 }
-#home-menu {
+.home-menu {
   display: flex;
   gap: 10px;
   list-style: none;
