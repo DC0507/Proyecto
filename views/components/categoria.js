@@ -19,6 +19,7 @@ export function crearCategoria(categoria) {
   cardContainer.appendChild(link);
 
   const cardTitle = document.createElement("p");
+  cardTitle.classList.add("category-name");
   cardTitle.innerHTML = `<b>${categoria.nombre.charAt(0).toUpperCase() + categoria.nombre.slice(1).toLowerCase()}</b>`;
   cardContainer.appendChild(cardTitle);
 

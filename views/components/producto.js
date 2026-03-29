@@ -40,7 +40,8 @@ export function crearProducto(producto) {
   // Botón favorito
   const btnFavorito = document.createElement("button");
   btnFavorito.classList.add("product-btn-favorite");
-  btnFavorito.textContent = "+Favorito";
+  btnFavorito.innerHTML = "&hearts;"; // icono de corazón
+  btnFavorito.setAttribute("aria-label", "Agregar a favoritos");
 
   // Armar estructura
   detalles.appendChild(nombre);
