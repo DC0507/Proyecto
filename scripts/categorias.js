@@ -1,7 +1,6 @@
-import {supabase} from "../scripts/supabase.js";
+import { supabase } from "../scripts/supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { crearCategoria } from "../views/components/categoria.js";
-
 
 // Contenedor de los productos
 const productsContainer = document.querySelector(".products-container");
@@ -9,13 +8,14 @@ const productsContainer = document.querySelector(".products-container");
 const categoriesContainer = document.querySelector(".categories-container");
 
 //Función para cargar los productos desde Supabase
-async function cargarProductos() {
-  const { data: productos, error } = await supabase
+async function cargarProductos(catId) {
+  let query = supabase
     .from("productos")
     .select("*")
-    .order("nombre", { ascending: true })
-    .order("id_cat", { ascending: true })
-    .limit(12);
+    .eq("id_cat", catId)
+    .order("nombre", { ascending: true });
+
+  const { data: productos, error } = await query.limit(12);
 
   if (error) {
     console.error("Error al cargar productos:", error);
@@ -47,7 +47,9 @@ async function cargarCategorias() {
 }
 
 //Llamada a la función para cargar los productos al iniciar la página
-cargarProductos();
+const urlParams = new URLSearchParams(window.location.search);
+const catId = urlParams.get("catId");
+cargarProductos(catId);
 
 //Llamada a la función para cargar las categorías al iniciar la página
 cargarCategorias();

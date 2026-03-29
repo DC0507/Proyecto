@@ -56,7 +56,7 @@ nav {
   border-radius: 15px;
   background-color: rgba(0, 0, 255, 0.397);
 }
-.categories-carousel {
+.categories-container {
   display: flex;
   justify-content: space-evenly;
   gap: 50px;
