@@ -28,6 +28,8 @@ async function cargarProductos() {
 // ejecutarlo
 cargarProductos();
 
+// *****************************************************************
+
 const input = document.getElementById("search");
 const lista = document.getElementById("sugerencias");
 
