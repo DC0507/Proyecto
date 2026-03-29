@@ -1,7 +1,35 @@
 import { supabase } from "./supabase.js";
 
-function renderCarrito(data) {
+function eliminarItem(id) {
+  supabase
+    .from("carrito")
+    .delete()
+    .eq("id", id)
+    .then(({ error }) => {
+      if (error) {
+        console.error("Error al eliminar el item del carrito:", error);
+      } else {
+        console.log("Item eliminado del carrito");
+        cargarCarrito(); // Recargar el carrito para reflejar los cambios
+      }
+    });
+}
+
+// Hacer la función accesible globalmente
+window.eliminarItem = eliminarItem;
+
+function renderCarrito(data=[]) {
   const carritoContainer = document.querySelector(".carrito-container");
+  
+  // Limpiar el contenedor antes de renderizar
+  carritoContainer.innerHTML = "";
+
+  if (data.length === 0) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.textContent = "Tu carrito está vacío.";
+    carritoContainer.appendChild(emptyMessage);
+    return;
+  }
 
   const titleCarrito = document.createElement("h2");
   titleCarrito.textContent = "Carrito de Compras";
@@ -9,7 +37,7 @@ function renderCarrito(data) {
 
   const carritoTable = document.createElement("table");
   const headerRow = document.createElement("tr");
-  const headers = ["Producto", "Cantidad", "Precio Unitario", "Total"];
+  const headers = ["Producto", "Cantidad", "Precio Unitario", "Total", "Acciones"];
 
   headers.forEach((headerText) => {
     const headerCell = document.createElement("th");
@@ -28,10 +56,11 @@ function renderCarrito(data) {
     const totalItem = item.cantidad * item.precio_unitario;
 
     row.innerHTML = `
-                    <td>${item.nombre || "Producto"}</td>
+                    <td>${item.nombre}</td>
                     <td>${item.cantidad}</td>
-                    <td>$${parseFloat(item.precio_unitario).toFixed(2)}</td>
-                    <td>$${totalItem.toFixed(2)}</td>
+                    <td>₡${parseFloat(item.precio_unitario).toFixed(2)}</td>
+                    <td>₡${totalItem.toFixed(2)}</td>
+                    <td><button class="btn-eliminar" data-id="${item.id}" onclick="eliminarItem(${item.id})">&times;</button></td>
                 `;
     carritoTable.appendChild(row);
   });
@@ -70,6 +99,7 @@ async function cargarCarrito() {
   
   if (!carritoItems || carritoItems.length === 0) {
     renderCarrito([]);
+
     return;
   }
   
