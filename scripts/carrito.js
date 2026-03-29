@@ -1,66 +1,101 @@
 import { supabase } from "./supabase.js";
 
-export async function setupAddToCartButtons() {
-    document.querySelectorAll(".product-btn-add").forEach(button => {
-        // Limpiar listeners previos
-        button.replaceWith(button.cloneNode(true));
-    });
+function renderCarrito(data) {
+  const carritoContainer = document.querySelector(".carrito-container");
 
-    document.querySelectorAll(".product-btn-add").forEach(button => {
-        button.addEventListener("click", async (e) => {
-            const card = e.target.closest(".product-card");
-            
-            // BUSQUEDA FLEXIBLE: Buscamos las clases sin importar la estructura exacta
-            const nameEl = card.querySelector(".product-name");
-            // Buscamos .product-price o .price-value para cubrir ambos archivos
-            const priceEl = card.querySelector(".product-price") || card.querySelector(".price-value");
+  const titleCarrito = document.createElement("h2");
+  titleCarrito.textContent = "Carrito de Compras";
+  carritoContainer.appendChild(titleCarrito);
 
-            if (!nameEl || !priceEl) {
-                console.error("No se encontraron los datos del producto en la tarjeta.");
-                return;
-            }
+  const carritoTable = document.createElement("table");
+  const headerRow = document.createElement("tr");
+  const headers = ["Producto", "Cantidad", "Precio Unitario", "Total"];
 
-            const productId = card.dataset.productId;
-            const productName = nameEl.innerText;
-            const productPriceStr = priceEl.innerText;
-            
-            // Extraer solo números (quita ₡, "Precio:", etc)
-            const productPrice = parseFloat(productPriceStr.replace(/[^0-9.-]+/g, ""));
+  headers.forEach((headerText) => {
+    const headerCell = document.createElement("th");
+    headerCell.textContent = headerText;
+    headerRow.appendChild(headerCell);
+  });
 
-            // 1. Verificar sesión
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                alert("Inicia sesión para comprar.");
-                window.location.href = "../views/login.html";
-                return;
-            }
+  // Limpiar filas anteriores (mantener el header)
+  const rows = carritoTable.querySelectorAll("tr:not(:first-child)");
+  rows.forEach((row) => row.remove());
 
-            // 2. Guardar en LocalStorage
-            let cart = JSON.parse(localStorage.getItem("carrito")) || [];
-            const existingIndex = cart.findIndex(item => item.id === productId);
+  carritoTable.appendChild(headerRow);
+  // Llenar la tabla con los datos del carrito
+  data.forEach((item) => {
+    const row = document.createElement("tr");
+    const totalItem = item.cantidad * item.precio_unitario;
 
-            if (existingIndex > -1) {
-                cart[existingIndex].cantidad += 1;
-            } else {
-                cart.push({
-                    id: productId,
-                    nombre: productName,
-                    precio: productPrice,
-                    cantidad: 1
-                });
-            }
+    row.innerHTML = `
+                    <td>${item.nombre || "Producto"}</td>
+                    <td>${item.cantidad}</td>
+                    <td>$${parseFloat(item.precio_unitario).toFixed(2)}</td>
+                    <td>$${totalItem.toFixed(2)}</td>
+                `;
+    carritoTable.appendChild(row);
+  });
 
-            localStorage.setItem("carrito", JSON.stringify(cart));
+  carritoContainer.appendChild(carritoTable);
 
-            // 3. Feedback visual
-            const originalText = button.innerText;
-            button.innerText = "¡Agregado!";
-            button.classList.add("btn-success"); // Si usas Bootstrap
-            
-            setTimeout(() => {
-                button.innerText = originalText;
-                button.classList.remove("btn-success");
-            }, 1000);
-        });
-    });
+  const pagarBtn = document.createElement('button');
+  pagarBtn.textContent = 'Pagar';
+  pagarBtn.className = 'btn-pagar';
+  pagarBtn.addEventListener('click', () => {
+    alert('Funcionalidad de pago no implementada aún');
+    // Aquí puedes disparar el flujo de pago real (API, redirección, etc.)
+  });
+  carritoContainer.appendChild(pagarBtn);
+
+  return carritoTable;
 }
+
+async function cargarCarrito() {
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  
+  if (authError || !user) {
+    console.error("Usuario no autenticado", authError);
+    return;
+  }
+  
+  const { data: carritoItems, error } = await supabase
+    .from("carrito")
+    .select("*")
+    .eq("usuario_id", user.id);
+  
+  if (error) {
+    console.error("Error al cargar el carrito:", error);
+    return;
+  }
+  
+  if (!carritoItems || carritoItems.length === 0) {
+    renderCarrito([]);
+    return;
+  }
+  
+  // Obtener información completa de productos
+  const productIds = carritoItems.map(item => item.producto_id);
+  const { data: productos, error: productosError } = await supabase
+    .from("productos")
+    .select("*")
+    .in("id", productIds);
+  
+  if (productosError) {
+    console.error("Error al cargar productos:", productosError);
+    return;
+  }
+  
+  // Combinar datos del carrito con información de productos
+  const carritoConProductos = carritoItems.map(carritoItem => {
+    const producto = productos.find(p => p.id === carritoItem.producto_id);
+    return {
+      ...carritoItem,
+      nombre: producto ? producto.nombre : "Producto no encontrado",
+      precio_unitario: producto ? producto.precio : carritoItem.precio_unitario
+    };
+  });
+  
+  renderCarrito(carritoConProductos);
+}
+
+cargarCarrito();
