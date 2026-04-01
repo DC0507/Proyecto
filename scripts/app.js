@@ -172,3 +172,56 @@ async function init() {
 }
 
 init();
+
+
+//************************************************************** */
+
+const input = document.getElementById("search");
+const lista = document.getElementById("sugerencias");
+
+let sugerencias = [];
+
+// Cargar productos desde Supabase
+async function cargarSugerencias() {
+  const { data, error } = await supabase
+    .from("productos")
+    .select("*")
+    .order("nombre", { ascending: true });
+
+  if (error) {
+    console.error("Error cargando los productos", error);
+    return;
+  }
+
+  sugerencias = data.map(producto => producto.nombre);
+}
+
+// Ejecutar al iniciar
+await cargarSugerencias();
+
+
+// Evento de búsqueda
+input.addEventListener("input", () => {
+  const texto = input.value.toLowerCase();
+
+  lista.innerHTML = "";
+
+  if (texto === "") return;
+
+  const filtrados = sugerencias.filter(nombre =>
+    nombre.toLowerCase().includes(texto)
+  );
+
+  filtrados.slice(0, 5).forEach(nombre => { // Limitar a 5 sugerencias
+    const li = document.createElement("li");
+    li.textContent = nombre;
+
+    li.addEventListener("click", () => {
+      input.value = nombre;
+      lista.innerHTML = "";
+    });
+
+    lista.appendChild(li);
+  });
+});
+
