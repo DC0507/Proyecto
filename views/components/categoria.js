@@ -12,10 +12,8 @@ export function crearCategoria(categoria) {
   const cardImg = document.createElement("img");
   cardImg.classList.add("category-icon");
   cardImg.src =
-    `./media/images/categories/${categoria.id}.gif` ||
-    `../../media/images/categories/${categoria.id}.gif` ||
-    "./media/images/categories/default-category.png" ||
-    "../../media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
+    `../media/images/categories/${categoria.id}.gif` ||
+    "../media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
 
   link.appendChild(cardImg);
   cardContainer.appendChild(link);
