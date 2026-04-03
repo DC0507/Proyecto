@@ -9,9 +9,12 @@ export function crearProducto(producto) {
   // Imagen del producto
   const cardImg = document.createElement("img");
   cardImg.classList.add("product-img");
-  cardImg.src =
-    `./media/images/products/${producto.id}.webp` ||
-    "./media/images/products/default-product.png"; // usa imagen por defecto si el producto no tiene
+  cardImg.src = `../media/images/products/${producto.id}.webp`;
+
+  // Fallback to default image if product image fails to load
+  cardImg.onerror = () => {
+    cardImg.src = "../media/images/products/default-product.png";
+  };
 
   // Contenedor de detalles del producto
   const detalles = document.createElement("p");
