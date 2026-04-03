@@ -5,7 +5,7 @@ export function crearCategoria(categoria) {
 
   // Enlace a la categoría
   const link = document.createElement("a");
-  link.href = `../views/categoria.html?catId=${categoria.id}`;
+  link.href = `./views/categoria.html?catId=${categoria.id}`;
   link.dataset.catId = categoria.id;
   
   // Imagen
