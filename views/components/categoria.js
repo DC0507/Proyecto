@@ -11,10 +11,14 @@ export function crearCategoria(categoria) {
   // Imagen
   const cardImg = document.createElement("img");
   cardImg.classList.add("category-icon");
+  if (document.title != "Clonemart"){
   cardImg.src =
     `../media/images/categories/${categoria.id}.gif` ||
     "../media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
-
+  } else {
+    `./media/images/categories/${categoria.id}.gif` ||
+    "./media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
+  }
   link.appendChild(cardImg);
   cardContainer.appendChild(link);
 
