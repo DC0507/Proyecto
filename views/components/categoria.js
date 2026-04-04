@@ -3,23 +3,25 @@ export function crearCategoria(categoria) {
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("category-card");
 
-  // Enlace a la categoría
-  const link = document.createElement("a");
-  if (document.title != "Clonemart"){
-    cardImg.src = link.href = `./categoria.html?catId=${categoria.id}`;
-  } else {
-    link.href = `./views/categoria.html?catId=${categoria.id}`;
-  }
-  link.dataset.catId = categoria.id;
-  
   // Imagen
   const cardImg = document.createElement("img");
   cardImg.classList.add("category-icon");
-  if (document.title != "Clonemart"){
-    cardImg.src = `../media/images/categories/${categoria.id}.gif` || "../media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
+
+  // Enlace a la categoria
+  const link = document.createElement("a");
+  if (document.title != "Clonemart") {
+    link.href = `./categoria.html?catId=${categoria.id}`;
+    cardImg.src =
+      `../media/images/categories/${categoria.id}.gif` ||
+      "../media/images/categories/default-category.png";
   } else {
-    cardImg.src = `./media/images/categories/${categoria.id}.gif` || "./media/images/categories/default-category.png"; // usa imagen por defecto si la categoría no tiene
+    link.href = `./views/categoria.html?catId=${categoria.id}`;
+    cardImg.src =
+      `./media/images/categories/${categoria.id}.gif` ||
+      "./media/images/categories/default-category.png";
   }
+  link.dataset.catId = categoria.id;
+
   link.appendChild(cardImg);
   cardContainer.appendChild(link);
 
