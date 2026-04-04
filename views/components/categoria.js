@@ -6,7 +6,7 @@ export function crearCategoria(categoria) {
   // Enlace a la categoría
   const link = document.createElement("a");
   if (document.title != "Clonemart"){
-    cardImg.src = link.href = `../views/categoria.html?catId=${categoria.id}`;
+    cardImg.src = link.href = `./categoria.html?catId=${categoria.id}`;
   } else {
     link.href = `./views/categoria.html?catId=${categoria.id}`;
   }
