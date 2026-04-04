@@ -9,11 +9,18 @@ export function crearProducto(producto) {
   // Imagen del producto
   const cardImg = document.createElement("img");
   cardImg.classList.add("product-img");
-  cardImg.src = `../media/images/products/${producto.id}.webp`;
-
+  if (document.title != "Clonemart"){
+    cardImg.src = `../media/images/products/${producto.id}.webp`;
+  } else {
+    cardImg.src = `./media/images/products/${producto.id}.webp`;
+  }
   // Fallback to default image if product image fails to load
   cardImg.onerror = () => {
-    cardImg.src = "../media/images/products/default-product.png";
+    if (document.title != "Clonemart"){
+      cardImg.src = "../media/images/products/default-product.png";
+    } else {
+      cardImg.src = "./media/images/products/default-product.png";
+    }
   };
 
   // Contenedor de detalles del producto
