@@ -14,21 +14,21 @@
         /></a>
         <!-- Barra de búsqueda -->
         <div class="search-container">
-          <!--img src="../media/images/loop.png" class="search-icon" /-->
-          <input type="search" id="search" placeholder="Buscar productos..." />
+          <div class="search-box">
+            <input type="search" id="search" placeholder="Buscar productos..." />
+            <span class="search-icon"></span>
+          </div>
           <ul id="sugerencias" class="sugerencias"></ul>
         </div>
-        <ul class="home-menu">
-          <a class="home-item" href="./views/misProductos.html"
-            ><li>Mis Productos</li></a
-          ><a class="home-item" href="./views/miCuenta.html"
-            ><li>Mi Cuenta</li></a
-          ><a class="home-item" href="./views/misPedidos.html">
-            <li>Mis Pedidos</li> </a
-          ><a class="home-item" href="./views/miCarrito.html"
-            ><li>Mi Carrito</li></a
-          >
-        </ul>
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+          <ul>
+            <li><a href="./views/misProductos.html">Productos</a></li>
+            <li><a href="./views/miCuenta.html">Mi Cuenta</a></li>
+            <li><a href="./views/misPedidos.html">Mis Pedidos</a></li>
+            <li><a href="./views/miCarrito.html">Mi Carrito</a></li>
+          </ul>
+        </nav>
       </nav>
       <div class="categories-container"></div>
     </header>
@@ -36,6 +36,7 @@
     <footer>
       ©2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="./scripts/app.js" type="module"></script>
   </body>
 </html>

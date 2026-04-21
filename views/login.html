@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,41 +11,90 @@
   <body>
     <header>
       <nav>
-        <a href="../"
-          ><img src="../media/images/logo.png" alt="" id="logo"
-        /></a>
+        <a href="../">
+          <img src="../media/images/logo.png" alt="" id="logo" />
+      </a>
         <!-- Barra de búsqueda -->
         <div class="search-container">
-          <!--img src="../media/images/loop.png" class="search-icon" /-->
-          <input type="search" id="search" placeholder="Buscar productos..." />
-          <ul id="sugerencias" class="sugerencias"></ul>
+          <div class="search-box">
+            <input type="search" id="search" placeholder="Buscar productos..." />
+            <span class="search-icon"></span>
+          </div>
         </div>
-        <ul class="home-menu">
-          <a class="home-item" href="../views/misProductos.html"
-            ><li>Mis Productos</li></a
-          ><a class="home-item" href="../views/miCuenta.html"
-            ><li>Mi Cuenta</li></a
-          ><a class="home-item" href="../views/misPedidos.html">
-            <li>Mis Pedidos</li> </a
-          ><a class="home-item" href="../views/miCarrito.html"
-            ><li>Mi Carrito</li></a
-          >
-        </ul>
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+          <ul>
+            <li><a href="./misProductos.html">Productos</a></li>
+            <li><a href="./miCuenta.html">Mi Cuenta</a></li>
+            <li><a href="./misPedidos.html">Mis Pedidos</a></li>
+            <li><a href="./miCarrito.html">Mi Carrito</a></li>
+          </ul>
+        </nav>
       </nav>
     </header>
-    <article id="login-wrapper">
-      <div id="login-form">
-        <h1>Inicia sesión o crea una cuenta</h1>
-        <p>Aún no esta registrado? Haz clic <a id="register" href="../views/registro.html">aquí</a></p>
-        <input type="email" name="client-email" id="client-email" placeholder="Ingrese su correo electrónico">
-        <input type="password" name="client-pws" id="client-pws" placeholder="Ingrese su contraseña">
-        <button type="submit" id="login-btn">Iniciar Sesión</button>
-        <a id="recover-pws" href="../views/recuperarPWS.html"><sub>Olvido su contraseña?</sub></a>
+<main id="login-wrapper">
+
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form id="register-form">
+        <h2>Crear Cuenta</h2>
+
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <input type="password" placeholder="Contraseña" required>
+
+        <button class="btn" type="submit">Registrarse</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form id="login-form">
+        <h2>Iniciar Sesión</h2>
+
+        <input type="email" id="client-email" placeholder="Ingrese su correo electrónico" required>
+        <input type="password" id="client-pws" placeholder="Ingrese su contraseña" required>
+
+        <a href="../views/recuperarPWS.html" class="footer-link">
+          ¿Olvidó su contraseña?
+        </a>
+
+        <button class="btn" type="submit" id="login-btn">Iniciar Sesión</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+
+        <div class="overlay-panel overlay-left">
+          <h1>Bienvenido de nuevo</h1>
+          <p>Inicia sesión para continuar</p>
+          <button class="btn ghost" id="signIn">Iniciar Sesión</button>
+        </div>
+
+        <div class="overlay-panel overlay-right">
+          <h1>¡Hola!</h1>
+          <p>Crea una cuenta para empezar</p>
+          <button class="btn ghost" id="signUp">Registrarse</button>
+        </div>
       </div>
-    </article>
-    <footer>
-      © 2026 Copyright. Todos los derechos reservados Clonemart 2026
-    </footer>
-    <script type="module" src="../scripts/login.js"></script>
+    </div>
+  </div>
+
+    </main>
+      <footer>
+        © 2026 Copyright. Todos los derechos reservados Clonemart 2026
+      </footer>
+      <script type="module" src="../scripts/login.js"></script>
+      <script>
+          const signUpButton = document.getElementById('signUp');
+          const signInButton = document.getElementById('signIn');
+          const container = document.getElementById('container');
+
+          signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+          });
+
+          signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+          });
+      </script>
   </body>
 </html>

@@ -51,3 +51,69 @@ cargarProductos();
 
 //Llamada a la función para cargar las categorías al iniciar la página
 cargarCategorias();
+
+// Función para manejar la búsqueda de productos ***************************************************************
+const input = document.getElementById("search");
+const sugerencias = document.getElementById("sugerencias");
+
+let timeout = null;
+
+input.addEventListener("input", () => {
+  clearTimeout(timeout);
+
+  const valor = input.value.trim();
+
+  if (!valor) {
+    sugerencias.classList.remove("active");
+    sugerencias.innerHTML = "";
+    return;
+  }
+
+  timeout = setTimeout(() => {
+    buscarProductos(valor);
+  }, 300);
+});
+
+async function buscarProductos(texto) {
+  const { data, error } = await supabase
+    .from("productos")
+    .select("nombre")  
+    .ilike("nombre", `%${texto}%`)
+    .limit(5);
+
+  if (error) {
+    console.error("Error buscando:", error);
+    return;
+  }
+
+  mostrarSugerencias(data);
+}
+
+function mostrarSugerencias(items) {
+  sugerencias.innerHTML = "";
+
+  if (!items.length) {
+    sugerencias.classList.remove("active");
+    return;
+  }
+
+  items.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item.nombre;
+
+    li.addEventListener("click", () => {
+      input.value = item.nombre;
+      sugerencias.classList.remove("active");
+    });
+
+    sugerencias.appendChild(li);
+  });
+
+  sugerencias.classList.add("active");
+}
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-container")) {
+    sugerencias.classList.remove("active");
+  }
+});
+// ******************************************************************************************************************
