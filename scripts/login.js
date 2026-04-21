@@ -19,6 +19,6 @@ loginBtn.addEventListener("click", async (e) => {
     console.error("Error de Supabase:", error.status, error.message);
     alert(error.message);
   } else {
-    window.location.href = "./miCarrito.html";
+    window.location.href = "../index.html"; // Redirige al usuario a la página principal después de iniciar sesión
   }
 });

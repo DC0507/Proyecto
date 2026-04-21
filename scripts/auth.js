@@ -1,6 +1,6 @@
 import { supabase } from "./supabase.js";
 
-const INACTIVITY_LIMIT = 2 * 60 * 1000; // 2 minutos
+const INACTIVITY_LIMIT = 2 * 60 * 1000; // 2 minuto
 const WARNING_BEFORE = 30 * 1000;      // 30 segundos antes
 let warningTimeout;
 let logoutTimeout;
