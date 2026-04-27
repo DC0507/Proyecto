@@ -3,7 +3,7 @@ import { supabase } from "../../scripts/supabase.js";
 export async function createNavbar() {
     const navbarWrapper = document.querySelector(".nav-wrapper");
     if (!navbarWrapper) return;
-    navbarWrapper.innerHTML = `<a href="/Proyecto"><img src="/Proyecto/media/images/logo.png" alt="" id="logo" /></a>
+    navbarWrapper.innerHTML = `<a href="/Proyecto/index.html"><img src="/Proyecto/media/images/logo.png" alt="" id="logo" /></a>
         <!-- Barra de búsqueda -->
         <div class="search-container">
           <div class="search-box">
@@ -32,7 +32,7 @@ export async function createNavbar() {
         const logoutBtn = li.querySelector("#logout-btn");
         logoutBtn.onclick = async () => {
             await supabase.auth.signOut();
-            window.location.href = '/views/login.html';
+            window.location.href = '/Proyecto/views/login.html';
         };
         ul.appendChild(li);
     }
