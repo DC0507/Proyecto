@@ -6,14 +6,33 @@
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="../styles/home.css" />
     <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/recuperarPWS.css">
   </head>
   <body>
     <header>
       <nav class="nav-wrapper"></nav>
     </header>
-    </article>
+    <main id="reset-wrapper">
+      <div class="form-container reset-form-container">
+        <form id="reset-password-form">
+          <h2>Recuperar Contraseña</h2>
+          <p class="reset-description">
+            Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+          </p>
+
+          <input type="email" id="reset-email" placeholder="Correo electrónico" required />
+
+          <button class="btn" type="submit">Enviar Enlace</button>
+
+          <p class="reset-link-text">
+            <a href="../views/login.html">Volver al inicio de sesión</a>
+          </p>
+        </form>
+      </div>
+    </main>
     <footer>
       © 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
+    <script type="module" src="../scripts/recuperarPWS.js"></script>
   </body>
 </html>
