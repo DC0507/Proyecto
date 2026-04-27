@@ -3,7 +3,7 @@ import { supabase } from "../../scripts/supabase.js";
 export async function createNavbar() {
     const navbarWrapper = document.querySelector(".nav-wrapper");
     if (!navbarWrapper) return;
-    navbarWrapper.innerHTML = `<a href="/"><img src="/Proyecto/media/images/logo.png" alt="" id="logo" /></a>
+    navbarWrapper.innerHTML = `<a href="/Proyecto"><img src="/Proyecto/media/images/logo.png" alt="" id="logo" /></a>
         <!-- Barra de búsqueda -->
         <div class="search-container">
           <div class="search-box">
