@@ -1,4 +1,5 @@
 import { supabase } from "./supabase.js";
+import { createNavbar } from "../views/components/navbar.js";
 
 function eliminarItem(id) {
   supabase
@@ -128,4 +129,5 @@ async function cargarCarrito() {
   renderCarrito(carritoConProductos);
 }
 
+createNavbar();
 cargarCarrito();
