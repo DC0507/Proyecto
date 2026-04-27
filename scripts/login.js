@@ -1,5 +1,6 @@
 // Importamos la configuración de Supabase para conectar con la base de datos
 import { supabase } from "./supabase.js";
+import { createNavbar } from "../views/components/navbar.js";
 
 const loginBtn = document.getElementById("login-btn");
 
@@ -22,3 +23,4 @@ loginBtn.addEventListener("click", async (e) => {
     window.location.href = `${window.location.origin}/index.html`; // Redirige al usuario a la página principal después de iniciar sesión
   }
 });
+createNavbar(); // Llama a la función para crear la barra de navegación al cargar la página
