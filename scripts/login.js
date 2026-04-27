@@ -20,7 +20,7 @@ loginBtn.addEventListener("click", async (e) => {
     console.error("Error de Supabase:", error.status, error.message);
     alert(error.message);
   } else {
-    window.location.href = `${window.location.origin}/index.html`; // Redirige al usuario a la página principal después de iniciar sesión
+    window.location.href = `/Proyecto/index.html`; // Redirige al usuario a la página principal después de iniciar sesión
   }
 });
 createNavbar(); // Llama a la función para crear la barra de navegación al cargar la página
