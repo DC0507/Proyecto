@@ -32,7 +32,7 @@ if (registerForm) {
       alert(error.message);
     } else {
       alert("Usuario registrado con éxito!");
-      window.location.href = "../index.html"; // Redirige al usuario a la página principal después de registrarse
+      window.location.href = `${window.location.origin}/index.html`; // Redirige al usuario a la página principal después de registrarse
     }
   });
 }

@@ -14,7 +14,7 @@ async function cargarProductosFavoritos() {
   if (authError || !user) {
     console.error("Authentication failed:", authError);
     alert("Debes iniciar sesión para ver tus productos favoritos.");
-    window.location.href = "../views/login.html";
+    window.location.href = `${window.location.origin}/views/login.html`;
     return;
   }
 

@@ -62,7 +62,7 @@ function hideWarning() {
 
 async function redirectToLogin() {
     await supabase.auth.signOut();
-    window.location.href = '../views/login.html';
+    window.location.href = `${window.location.origin}/views/login.html`;
 }
 
 function injectModalStyles() {
