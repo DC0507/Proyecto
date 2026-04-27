@@ -1,0 +1,40 @@
+#reset-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+}
+
+.reset-form-container {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  padding: 40px;
+}
+
+.reset-description {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.reset-link-text {
+  margin-top: 15px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.reset-link-text a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.reset-link-text a:hover {
+  text-decoration: underline;
+}
