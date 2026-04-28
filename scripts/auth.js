@@ -86,4 +86,6 @@ function injectModalStyles() {
     document.head.appendChild(style);
 }
 
-checkAccess();
+if (document.body?.dataset.requiresAuth === "true") {
+    checkAccess();
+}
