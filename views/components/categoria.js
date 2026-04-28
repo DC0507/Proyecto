@@ -9,17 +9,10 @@ export function crearCategoria(categoria) {
 
   // Enlace a la categoria
   const link = document.createElement("a");
-  if (document.title != "Clonemart") {
-    link.href = `./categoria.html?catId=${categoria.id}`;
-    cardImg.src =
-      `../media/images/categories/${categoria.id}.gif` ||
-      "../media/images/categories/default-category.png";
-  } else {
-    link.href = `./views/categoria.html?catId=${categoria.id}`;
-    cardImg.src =
-      `./media/images/categories/${categoria.id}.gif` ||
-      "./media/images/categories/default-category.png";
-  }
+  link.href = `/views/categoria.html?catId=${categoria.id}`;
+  cardImg.src =
+    `/media/images/categories/${categoria.id}.gif` ||
+    "/media/images/categories/default-category.png";
   link.dataset.catId = categoria.id;
 
   link.appendChild(cardImg);

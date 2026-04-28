@@ -1,6 +1,6 @@
-import { supabase } from "./supabase.js";
-import { crearProducto } from "../views/components/producto.js";
-import { createNavbar } from "../views/components/navbar.js";
+import { supabase } from "/scripts/supabase.js";
+import { crearProducto } from "/views/components/producto.js";
+import { createNavbar } from "/views/components/navbar.js";
 
 // Función para cargar los productos favoritos del usuario
 async function cargarProductosFavoritos() {

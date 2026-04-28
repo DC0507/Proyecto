@@ -1,5 +1,5 @@
 // Importamos la configuración de Supabase para conectar con la base de datos
-import { supabase } from "./supabase.js";
+import { supabase } from "/scripts/supabase.js";
 
 const resetForm = document.getElementById("reset-password-form");
 
@@ -15,7 +15,7 @@ if (resetForm) {
     }
 
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/views/actualizarPWS.html`,
+      redirectTo: `/views/actualizarPWS.html`,
     });
 
     if (error) {
@@ -23,8 +23,7 @@ if (resetForm) {
       alert("Error al enviar el enlace: " + error.message);
     } else {
       alert("¡Enlace de recuperación enviado! Revisa tu correo electrónico.");
-      // Opcional: redirigir al login después de enviar
-      // window.location.href = "../views/login.html";
+      window.location.href = "/";// Redirige al usuario a la página principal después de enviar el enlace
     }
   });
 }

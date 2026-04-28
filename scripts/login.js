@@ -1,6 +1,6 @@
 // Importamos la configuración de Supabase para conectar con la base de datos
-import { supabase } from "./supabase.js";
-import { createNavbar } from "../views/components/navbar.js";
+import { supabase } from "/scripts/supabase.js";
+import { createNavbar } from "/views/components/navbar.js";
 
 const loginBtn = document.getElementById("login-btn");
 
@@ -20,7 +20,7 @@ loginBtn.addEventListener("click", async (e) => {
     console.error("Error de Supabase:", error.status, error.message);
     alert(error.message);
   } else {
-    window.location.href = `/Proyecto/index.html`; // Redirige al usuario a la página principal después de iniciar sesión
+    window.location.href = `/`; // Redirige al usuario a la página principal después de iniciar sesión
   }
 });
 createNavbar(); // Llama a la función para crear la barra de navegación al cargar la página
