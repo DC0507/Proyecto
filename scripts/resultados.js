@@ -9,7 +9,7 @@ lupa.addEventListener("click", () => {
   console.log("Texto:", texto);
 });
 
-import { supabase } from "/scripts/supabase.js";
+import { supabase } from "scripts/supabase.js";
 
 const input = document.getElementById("search");
 

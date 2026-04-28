@@ -1,4 +1,4 @@
-import { supabase } from "/scripts/supabase.js";
+import { supabase } from "scripts/supabase.js";
 
 const INACTIVITY_LIMIT = 2 * 60 * 1000; // 2 minuto
 const WARNING_BEFORE = 30 * 1000;      // 30 segundos antes
@@ -62,7 +62,7 @@ function hideWarning() {
 
 export async function redirectToLogin() {
     await supabase.auth.signOut();
-    window.location.href = `/views/login.html`;
+    window.location.href = `views/login.html`;
 }
 
 function injectModalStyles() {

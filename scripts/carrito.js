@@ -1,5 +1,5 @@
-import { supabase } from "/scripts/supabase.js";
-import { createNavbar } from "/views/components/navbar.js";
+import { supabase } from "scripts/supabase.js";
+import { createNavbar } from "views/components/navbar.js";
 
 function eliminarItem(id) {
   supabase

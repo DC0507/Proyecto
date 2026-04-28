@@ -1,7 +1,7 @@
-import { supabase } from "/scripts/supabase.js";
-import { crearProducto } from "/views/components/producto.js";
-import { crearCategoria } from "/views/components/categoria.js";
-import { createNavbar } from "/views/components/navbar.js";
+import { supabase } from "scripts/supabase.js";
+import { crearProducto } from "views/components/producto.js";
+import { crearCategoria } from "views/components/categoria.js";
+import { createNavbar } from "views/components/navbar.js";
 
 // Contenedor de los productos
 const productsContainer = document.querySelector(".products-container");
