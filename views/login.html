@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iniciar Sesión</title>
+    <title>Iniciar Sesi&oacute;n</title>
     <link rel="stylesheet" href="../styles/home.css" />
     <link rel="stylesheet" href="../styles/login.css" />
   </head>
@@ -20,36 +20,36 @@
 
             <input type="text" id="register-name" placeholder="Nombre" required />
             <input type="text" id="register-lastname" placeholder="Apellido" required />
-            <input type="email" id="register-email" placeholder="Correo electrónico" required />
-            <input type="tel" id="register-phone" placeholder="Teléfono" required />
-            <input type="password" id="register-password" placeholder="Contraseña" required />
+            <input type="email" id="register-email" placeholder="Correo electr&oacute;nico" required />
+            <input type="tel" id="register-phone" placeholder="Tel&eacute;fono" required />
+            <input type="password" id="register-password" placeholder="Contrase&ntilde;a" required />
 
             <button class="btn" type="submit">Registrarse</button>
           </form>
         </div>
         <div class="form-container sign-in-container">
           <form id="login-form">
-            <h2>Iniciar Sesión</h2>
+            <h2>Iniciar Sesi&oacute;n</h2>
 
             <input
               type="email"
               id="client-email"
-              placeholder="Ingrese su correo electrónico"
+              placeholder="Ingrese su correo electr&oacute;nico"
               required
             />
             <input
               type="password"
               id="client-pws"
-              placeholder="Ingrese su contraseña"
+              placeholder="Ingrese su contrase&ntilde;a"
               required
             />
 
             <a href="/views/recuperarPWS.html" class="footer-link">
-              ¿Olvidó su contraseña?
+              &iquest;Olvid&oacute; su contrase&ntilde;a?
             </a>
 
             <button class="btn" type="submit" id="login-btn">
-              Iniciar Sesión
+              Iniciar Sesi&oacute;n
             </button>
           </form>
         </div>
@@ -57,12 +57,12 @@
           <div class="overlay">
             <div class="overlay-panel overlay-left">
               <h1>Bienvenido de nuevo</h1>
-              <p>Inicia sesión para continuar</p>
-              <button class="btn ghost" id="signIn">Iniciar Sesión</button>
+              <p>Inicia sesi&oacute;n para continuar</p>
+              <button class="btn ghost" id="signIn">Iniciar Sesi&oacute;n</button>
             </div>
 
             <div class="overlay-panel overlay-right">
-              <h1>¡Hola!</h1>
+              <h1>&iexcl;Hola!</h1>
               <p>Crea una cuenta para empezar</p>
               <button class="btn ghost" id="signUp">Registrarse</button>
             </div>
@@ -70,9 +70,8 @@
         </div>
       </div>
     </main>
-    <footer>
-      © 2026 Copyright. Todos los derechos reservados Clonemart 2026
-    </footer>
+    <footer data-footer-root></footer>
+    <script type="module" src="../views/components/footer.js"></script>
     <script type="module" src="../scripts/login.js"></script>
     <script type="module" src="../scripts/register.js"></script>
     <script>
