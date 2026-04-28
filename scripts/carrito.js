@@ -16,8 +16,24 @@ function eliminarItem(id) {
     });
 }
 
+function actualizarCantidad(id, nuevaCantidad) {
+  supabase
+    .from("carrito")
+    .update({ cantidad: nuevaCantidad })
+    .eq("id", id)
+    .then(({ error }) => {
+      if (error) {
+        console.error("Error al actualizar la cantidad del item en el carrito:", error);
+      } else {
+        console.log("Cantidad actualizada en el carrito");
+        cargarCarrito(); // Recargar el carrito para reflejar los cambios
+      }
+    });
+}
+
 // Hacer la función accesible globalmente
 window.eliminarItem = eliminarItem;
+window.actualizarCantidad = actualizarCantidad;
 
 function renderCarrito(data=[]) {
   const carritoContainer = document.querySelector(".carrito-container");
@@ -58,7 +74,9 @@ function renderCarrito(data=[]) {
 
     row.innerHTML = `
                     <td>${item.nombre}</td>
-                    <td>${item.cantidad}</td>
+                    <td>
+                      <input type="number" value="${item.cantidad}" min="1" onchange="actualizarCantidad(${item.id}, this.value)">
+                    </td>
                     <td>₡${parseFloat(item.precio_unitario).toFixed(2)}</td>
                     <td>₡${totalItem.toFixed(2)}</td>
                     <td><button class="btn-eliminar" data-id="${item.id}" onclick="eliminarItem(${item.id})">&times;</button></td>
