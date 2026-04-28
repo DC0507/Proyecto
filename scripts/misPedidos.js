@@ -1,5 +1,5 @@
-import { supabase } from "scripts/supabase.js";
-import { createNavbar } from "views/components/navbar.js";
+import { supabase } from "./supabase.js";
+import { createNavbar } from "../views/components/navbar.js";
 
 // Helper for CRC Formatting
 const formatCRC = (val) => new Intl.NumberFormat('es-CR', {

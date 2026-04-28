@@ -1,4 +1,7 @@
 export function crearCategoria(categoria) {
+  const inViews = window.location.pathname.includes("/views/");
+  const rootPrefix = inViews ? "../" : "";
+  const viewPrefix = inViews ? "" : "views/";
   // Crear contenedor principal
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("category-card");
@@ -9,10 +12,10 @@ export function crearCategoria(categoria) {
 
   // Enlace a la categoria
   const link = document.createElement("a");
-  link.href = `views/categoria.html?catId=${categoria.id}`;
+  link.href = `${viewPrefix}categoria.html?catId=${categoria.id}`;
   cardImg.src =
-    `media/images/categories/${categoria.id}.gif` ||
-    "media/images/categories/default-category.png";
+    `${rootPrefix}media/images/categories/${categoria.id}.gif` ||
+    `${rootPrefix}media/images/categories/default-category.png`;
   link.dataset.catId = categoria.id;
 
   link.appendChild(cardImg);

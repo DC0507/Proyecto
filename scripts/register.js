@@ -1,5 +1,5 @@
 // Importamos la configuración de Supabase para conectar con la base de datos
-import { supabase } from "scripts/supabase.js";
+import { supabase } from "./supabase.js";
 
 const registerForm = document.getElementById("register-form");
 
@@ -48,11 +48,11 @@ if (registerForm) {
           alert("Registro exitoso, pero error al guardar perfil: " + profileError.message);
         } else {
           alert("Usuario registrado con éxito!");
-          window.location.href = `index.html`; // Redirige al usuario a la página principal después de registrarse
+          window.location.href = `../index.html`; // Redirige al usuario a la página principal después de registrarse
         }
       } else {
         alert("Usuario registrado con éxito!");
-        window.location.href = `index.html`;
+        window.location.href = `../index.html`;
       }
     }
   });

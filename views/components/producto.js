@@ -1,8 +1,9 @@
-import { supabase } from "scripts/supabase.js";
-import { redirectToLogin } from "scripts/auth.js";
+import { supabase } from "../../scripts/supabase.js";
+import { redirectToLogin } from "../../scripts/auth.js";
 
 // Función para crear un elemento de producto
 export function crearProducto(producto) {
+  const rootPrefix = window.location.pathname.includes("/views/") ? "../" : "";
   // Crear contenedor principal
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("product-card");
@@ -11,8 +12,8 @@ export function crearProducto(producto) {
   const cardImg = document.createElement("img");
   cardImg.classList.add("product-img");
   cardImg.src =
-    `media/images/products/${producto.id}.webp` ||
-    "media/images/products/default-product.png";
+    `${rootPrefix}media/images/products/${producto.id}.webp` ||
+    `${rootPrefix}media/images/products/default-product.png`;
   cardImg.alt = producto.nombre;
 
   // Contenedor de detalles del producto

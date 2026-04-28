@@ -9,7 +9,7 @@ lupa.addEventListener("click", () => {
   console.log("Texto:", texto);
 });
 
-import { supabase } from "scripts/supabase.js";
+import { supabase } from "./supabase.js";
 
 const input = document.getElementById("search");
 
@@ -31,7 +31,8 @@ function buscar() {
   if (texto === "") return;
 
   // Redirige con parámetro en URL
-  window.location.href = `resultados.html?q=${encodeURIComponent(texto)}`;
+  const inViews = window.location.pathname.includes("/views/");
+  window.location.href = `${inViews ? "" : "views/"}resultados.html?q=${encodeURIComponent(texto)}`;
 }
 
 const supabase = createClient('https://eoeudoocwxyorctowwop.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVvZXVkb29jd3h5b3JjdG93d29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1NzY4NDUsImV4cCI6MjA5MDE1Mjg0NX0.u2RgjXr0aCyDMgO3XCCATvFNwvuS768xMEpmh_1vcZ0');
