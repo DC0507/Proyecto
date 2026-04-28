@@ -1,4 +1,5 @@
 import { supabase } from "../../scripts/supabase.js";
+import { redirectToLogin } from "../../scripts/auth.js";
 
 // Función para crear un elemento de producto
 export function crearProducto(producto) {
@@ -77,6 +78,7 @@ async function agregarAlCarrito(productoId) {
   if (authError || !user) {
     console.error("Authentication failed:", authError);
     alert("Debes iniciar sesión para agregar productos al carrito.");
+    redirectToLogin();
     return;
   }
 
@@ -130,6 +132,7 @@ async function toggleFavorito(productoId, btnElement) {
   if (authError || !user) {
     console.error("Authentication failed:", authError);
     alert("Debes iniciar sesión para agregar productos a favoritos.");
+    redirectToLogin();
     return;
   }
 

@@ -29,7 +29,7 @@ if (updatePasswordForm) {
     const { data: sessionData } = await supabase.auth.getSession();
     if (!sessionData.session) {
       alert("Enlace de recuperación inválido o expirado. Solicita uno nuevo.");
-      window.location.href = "../views/recuperarPWS.html";
+      window.location.href = `${window.location.origin}/views/recuperarPWS.html`;
       return;
     }
 
@@ -42,7 +42,7 @@ if (updatePasswordForm) {
       alert("Error al actualizar la contraseña: " + error.message);
     } else {
       alert("Contraseña actualizada exitosamente");
-      window.location.href = "../index.html"; // Redirect to home
+      window.location.href = `${window.location.origin}/index.html`; // Redirect to home
     }
   });
 }
@@ -51,5 +51,5 @@ if (updatePasswordForm) {
 const urlParams = new URLSearchParams(window.location.hash.substring(1));
 if (urlParams.get('error')) {
   alert("Enlace de recuperación inválido o expirado. Solicita uno nuevo.");
-  window.location.href = "../views/recuperarPWS.html";
+  window.location.href = `${window.location.origin}/views/recuperarPWS.html`;
 }

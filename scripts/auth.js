@@ -60,9 +60,9 @@ function hideWarning() {
     if (modal) modal.remove();
 }
 
-async function redirectToLogin() {
+export async function redirectToLogin() {
     await supabase.auth.signOut();
-    window.location.href = '../views/login.html';
+    window.location.href = `/Proyecto/views/login.html`;
 }
 
 function injectModalStyles() {
@@ -86,4 +86,6 @@ function injectModalStyles() {
     document.head.appendChild(style);
 }
 
-checkAccess();
+if (document.body?.dataset.requiresAuth === "true") {
+    checkAccess();
+}
