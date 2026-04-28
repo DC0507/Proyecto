@@ -13,15 +13,24 @@
       <div class="categories-container"></div>
     </header>
     <main id="cuenta-container">
-      <h1>Información de Mi Cuenta</h1>
+      <h1>Informacion de Mi Cuenta</h1>
       <p><strong>Nombre:</strong> <span id="perfil-nombre">Cargando...</span></p>
       <p><strong>Apellido:</strong> <span id="perfil-apellido">Cargando...</span></p>
       <p><strong>Telefono:</strong> <span id="perfil-telefono">Cargando...</span></p>
       <p><strong>Correo:</strong> <span id="perfil-correo">Cargando...</span></p>
+
+      <form id="perfil-form">
+        <h2>Actualizar Contacto</h2>
+        <label for="input-telefono">Telefono</label>
+        <input id="input-telefono" name="telefono" type="tel" placeholder="Telefono" />
+
+        <label for="input-correo">Correo</label>
+        <input id="input-correo" name="correo" type="email" placeholder="Correo electronico" />
+
+        <button type="submit" id="perfil-guardar-btn">Guardar cambios</button>
+      </form>
     </main>
-    <footer>
-      © 2026 Copyright. Todos los derechos reservados Clonemart 2026
-    </footer>
+    <script type="module" src="./components/footer.js"></script>
     <script type="module" src="../scripts/auth.js"></script>
     <script type="module" src="../scripts/miCuenta.js"></script>
   </body>

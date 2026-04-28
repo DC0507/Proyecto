@@ -37,6 +37,61 @@
   word-break: break-word;
 }
 
+#perfil-form {
+  margin-top: 18px;
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #d9e2ec;
+}
+
+#perfil-form h2 {
+  margin: 0 0 8px;
+  color: #1a75cf;
+  font-size: 20px;
+}
+
+#perfil-form label {
+  color: #102a43;
+  font-weight: 600;
+}
+
+#perfil-form input {
+  width: 100%;
+  border: 1px solid #bcccdc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #243b53;
+}
+
+#perfil-form input:focus {
+  outline: none;
+  border-color: #1a75cf;
+  box-shadow: 0 0 0 2px rgba(26, 117, 207, 0.15);
+}
+
+#perfil-guardar-btn {
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #1a75cf;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+#perfil-guardar-btn:hover {
+  background: #145ea8;
+}
+
+#perfil-guardar-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 @media (max-width: 640px) {
   #cuenta-container {
     width: calc(100% - 20px);

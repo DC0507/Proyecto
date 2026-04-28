@@ -94,12 +94,57 @@ header {
   border-radius: 10px;
   margin-left: 5px;
 }
-footer {
+.site-footer {
   background-color: #1a75cf;
+  margin-top: auto;
+  color: #ffffff;
+}
+
+.footer-inner {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 52px;
   display: flex;
   align-items: center;
-  height: 40px;
-  margin-top: auto;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.footer-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.footer-icon:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 959px) {
@@ -119,6 +164,13 @@ footer {
   .product-card {
     width: 100%;
     max-width: 320px;
+  }
+
+  .footer-inner {
+    width: calc(100% - 20px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 
