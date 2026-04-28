@@ -1,0 +1,60 @@
+#cuenta-container {
+  width: min(760px, calc(100% - 32px));
+  margin: 28px auto;
+  padding: 24px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+#cuenta-container h1 {
+  margin-bottom: 18px;
+  color: #1a75cf;
+  font-size: 28px;
+}
+
+#cuenta-container p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eef2f7;
+  color: #243b53;
+}
+
+#cuenta-container p:last-child {
+  border-bottom: none;
+}
+
+#cuenta-container strong {
+  min-width: 92px;
+  color: #102a43;
+}
+
+#cuenta-container span {
+  color: #334e68;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  #cuenta-container {
+    width: calc(100% - 20px);
+    margin: 20px auto;
+    padding: 16px;
+  }
+
+  #cuenta-container h1 {
+    font-size: 24px;
+  }
+
+  #cuenta-container p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  #cuenta-container strong {
+    min-width: 0;
+  }
+}

@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Cuenta</title>
     <link rel="stylesheet" href="../styles/home.css" />
+    <link rel="stylesheet" href="../styles/miCuenta.css" />
   </head>
   <body data-requires-auth="true">
     <header>
       <nav class="nav-wrapper"></nav>
       <div class="categories-container"></div>
     </header>
-    </article>
+    <main id="cuenta-container">
+      <h1>Información de Mi Cuenta</h1>
+      <p><strong>Nombre:</strong> <span id="perfil-nombre">Cargando...</span></p>
+      <p><strong>Apellido:</strong> <span id="perfil-apellido">Cargando...</span></p>
+      <p><strong>Telefono:</strong> <span id="perfil-telefono">Cargando...</span></p>
+      <p><strong>Correo:</strong> <span id="perfil-correo">Cargando...</span></p>
+    </main>
     <footer>
       © 2026 Copyright. Todos los derechos reservados Clonemart 2026
     </footer>
     <script type="module" src="../scripts/auth.js"></script>
+    <script type="module" src="../scripts/miCuenta.js"></script>
   </body>
 </html>
