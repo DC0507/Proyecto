@@ -289,14 +289,20 @@ header {
 }
 
 .product-btn-favorite {
-  background: #fff1f0;
-  color: var(--danger);
-  border: 1px solid #f8d4d2;
+  background: #6d7e9f;
+  color: #ffffff;
+  border: 1px solid #5d6f92;
+  font-size: 1.1rem;
 }
 
-.product-btn-favorite:hover,
+.product-btn-favorite:hover {
+  filter: brightness(1.05);
+}
+
 .product-btn-favorite.active {
   background: #ffe2e0;
+  color: var(--danger);
+  border-color: #f8d4d2;
 }
 
 .site-footer {

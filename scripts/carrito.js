@@ -1,8 +1,12 @@
+// Descripcion: Logica para gestionar el carrito de compras.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { createNavbar } from "../views/components/navbar.js";
 import { showAlert } from "./alerts.js";
 
 function eliminarItem(id) {
+  // Elimina el item y vuelve a consultar para refrescar totales/tabla.
   supabase
     .from("carrito")
     .delete()
@@ -18,6 +22,7 @@ function eliminarItem(id) {
 }
 
 function actualizarCantidad(id, nuevaCantidad) {
+  // Persiste la nueva cantidad y refresca la vista.
   supabase
     .from("carrito")
     .update({ cantidad: nuevaCantidad })
@@ -37,11 +42,13 @@ window.eliminarItem = eliminarItem;
 window.actualizarCantidad = actualizarCantidad;
 
 function renderCarrito(data = []) {
+  // Renderiza el carrito con los datos proporcionados. Si no hay datos, muestra mensaje de carrito vacío.
   const carritoContainer = document.querySelector(".carrito-container");
 
   // Limpiar el contenedor antes de renderizar
   carritoContainer.innerHTML = "";
 
+  // Si no hay items, mostrar mensaje de carrito vacío.
   if (data.length === 0) {
     const emptyMessage = document.createElement("p");
     emptyMessage.textContent = "Tu carrito está vacío.";
@@ -63,7 +70,7 @@ function renderCarrito(data = []) {
     headerRow.appendChild(headerCell);
   });
 
-  // Limpiar filas anteriores (mantener el header)
+  // Limpiar filas anteriores (mantener solo encabezados).
   const rows = carritoTable.querySelectorAll("tr:not(:first-child)");
   rows.forEach((row) => row.remove());
 
@@ -100,6 +107,9 @@ function renderCarrito(data = []) {
 }
 
 async function cargarCarrito() {
+  // Carga los items del carrito para el usuario autenticado y los renderiza.
+
+  // Verificar autenticacion y obtener el usuario actual.
   const {
     data: { user },
     error: authError,
@@ -110,6 +120,7 @@ async function cargarCarrito() {
     return;
   }
 
+  // Consultar items del carrito para el usuario actual.
   const { data: carritoItems, error } = await supabase.from("carrito").select("*").eq("usuario_id", user.id);
 
   if (error) {
@@ -132,7 +143,7 @@ async function cargarCarrito() {
     return;
   }
 
-  // Combinar datos del carrito con informacion de productos
+  // Mezcla items del carrito con datos de producto para render final.
   const carritoConProductos = carritoItems.map((carritoItem) => {
     const producto = productos.find((p) => p.id === carritoItem.producto_id);
     return {
@@ -147,3 +158,4 @@ async function cargarCarrito() {
 
 createNavbar();
 cargarCarrito();
+

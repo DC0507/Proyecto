@@ -8,22 +8,25 @@
     <link rel="stylesheet" href="../styles/login.css" />
   </head>
   <body>
+    <!-- Contenedor del header con la barra de navegacion -->
     <header>
       <nav class="nav-wrapper"></nav>
     </header>
+    <!-- Contenedor principal con el formulario para actualizar contraseña -->
     <main id="login-wrapper">
       <div class="form-container" style="position: relative; max-width: 400px; margin: 0 auto; top: auto; width: 100%; height: auto; padding: 40px;">
         <form id="update-password-form">
-          <h2>Actualizar Contrasena</h2>
+          <h2>Actualizar Contraseña</h2>
           <p style="margin-bottom: 20px; font-size: 14px; color: var(--text-secondary); text-align: center;">
-            Ingresa tu nueva contrasena.
+            Ingresa tu nueva contraseña.
           </p>
-          <input type="password" id="new-password" placeholder="Nueva contrasena" required />
-          <input type="password" id="confirm-password" placeholder="Confirmar contrasena" required />
-          <button class="btn" type="submit">Actualizar Contrasena</button>
+          <input type="password" id="new-password" placeholder="Nueva contraseña" required />
+          <input type="password" id="confirm-password" placeholder="Confirmar contraseña" required />
+          <button class="btn" type="submit">Actualizar Contraseña</button>
         </form>
       </div>
     </main>
+    <!-- Importa el footer y la logica de actualizacion de contraseña -->
     <script type="module" src="./components/footer.js"></script>
     <script type="module" src="../scripts/actualizarPWS.js"></script>
   </body>

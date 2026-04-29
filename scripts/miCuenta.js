@@ -1,3 +1,6 @@
+// Descripcion: Logica para mostrar y actualizar la informacion de la cuenta.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { createNavbar } from "../views/components/navbar.js";
 import { showAlert } from "./alerts.js";
@@ -5,6 +8,7 @@ import { showAlert } from "./alerts.js";
 let currentUser = null;
 
 function setPerfil(perfil) {
+  // Refleja en pantalla los datos actuales del perfil.
   document.getElementById("perfil-nombre").textContent = perfil?.nombre ?? "-";
   document.getElementById("perfil-apellido").textContent = perfil?.apellido ?? "-";
   document.getElementById("perfil-telefono").textContent = perfil?.telefono ?? "-";
@@ -12,6 +16,7 @@ function setPerfil(perfil) {
 }
 
 function setInputs(perfil) {
+  // Precarga el formulario con la informacion disponible.
   document.getElementById("input-telefono").value = perfil?.telefono ?? "";
   document.getElementById("input-correo").value = perfil?.correo ?? "";
 }
@@ -47,6 +52,8 @@ async function cargarPerfilActual() {
 }
 
 async function guardarCambiosContacto(event) {
+  // Maneja el evento de guardar cambios en el perfil, actualizando la informacion de contacto.
+
   event.preventDefault();
 
   if (!currentUser) {
@@ -76,7 +83,7 @@ async function guardarCambiosContacto(event) {
       throw authUpdateError;
     }
 
-    // Actualiza contacto en la tabla perfiles.
+    // Actualiza contacto en la tabla perfiles (fuente principal del perfil).
     const { error: perfilUpdateError } = await supabase
       .from("perfiles")
       .update({
@@ -105,3 +112,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   await cargarPerfilActual();
   document.getElementById("perfil-form").addEventListener("submit", guardarCambiosContacto);
 });
+

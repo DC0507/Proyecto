@@ -1,12 +1,18 @@
+// Descripcion: Componente para construir la barra de navegacion principal.
 import { supabase } from "../../scripts/supabase.js";
 
 export async function createNavbar() {
+    // Ajusta prefijos segun si estamos en `/views` o en raiz.
     const inViews = window.location.pathname.includes("/views/");
     const rootPrefix = inViews ? "../" : "";
     const viewPrefix = inViews ? "" : "views/";
     const navbarWrapper = document.querySelector(".nav-wrapper");
     if (!navbarWrapper) return;
-    navbarWrapper.innerHTML = `<a href="${rootPrefix}index.html"><img src="${rootPrefix}media/images/logo.png" alt="" id="logo" /></a>
+    // Obtiene URL publica del logo alojado en el bucket.
+    const { data: logoData } = supabase.storage
+        .from("productos-images")
+        .getPublicUrl("logos/logo.png");
+    navbarWrapper.innerHTML = `<a href="${rootPrefix}index.html"><img src="${logoData?.publicUrl || ""}" alt="" id="logo" /></a>
         <!-- Barra de búsqueda -->
         <div class="search-container">
           <div class="search-box">
@@ -27,6 +33,7 @@ export async function createNavbar() {
             <li><a href="${viewPrefix}miCarrito.html">Mi Carrito</a></li>`;
 
     const { data } = await supabase.auth.getSession();
+    // Si hay sesion activa, agrega opcion de cerrar sesion.
     const session = data?.session;
     if (session) {
         const li = document.createElement("li");
@@ -41,3 +48,4 @@ export async function createNavbar() {
     navbar.appendChild(ul);
     navbarWrapper.appendChild(navbar);
 }
+

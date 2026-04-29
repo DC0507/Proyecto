@@ -1,3 +1,8 @@
+// Descripcion: Logica para cargar y mostrar resultados de busqueda o categoria.
+
+// Importaciones necesarias
+import { supabase } from "./supabase.js";
+
 console.log("inicio");
 
 console.log(input, lupa);
@@ -8,8 +13,6 @@ lupa.addEventListener("click", () => {
   const texto = input.value;
   console.log("Texto:", texto);
 });
-
-import { supabase } from "./supabase.js";
 
 const input = document.getElementById("search");
 
@@ -26,6 +29,7 @@ lupa.addEventListener("click", () => {
 });
 
 function buscar() {
+  // Toma el texto y redirige a resultados con query string.
   const texto = input.value.trim();
 
   if (texto === "") return;
@@ -44,6 +48,7 @@ const params = new URLSearchParams(window.location.search);
 const query = params.get("q");
 
 async function cargarResultados() {
+    // Si no hay query, no se consulta la base de datos.
     if (!query) return;
 
   const { data, error } = await supabase
@@ -68,5 +73,3 @@ async function cargarResultados() {
 }
 
 cargarResultados();
-
-// document.body.insertAdjacentHTML("afterbegin", `<h2>Resultados para: ${query}</h2>`);

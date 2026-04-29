@@ -1,4 +1,6 @@
-// Importamos la configuracion de Supabase para conectar con la base de datos
+// Descripcion: Logica de registro de nuevos usuarios.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { showAlert } from "./alerts.js";
 
@@ -20,6 +22,7 @@ if (registerForm) {
       return;
     }
 
+    // Crea el usuario en Supabase Auth.
     const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
@@ -29,7 +32,7 @@ if (registerForm) {
       console.error("Error de Supabase:", error.status, error.message);
       await showAlert(error.message, { icon: "error", title: "Error" });
     } else {
-      // Insertar o actualizar en perfiles
+      // Insertar o actualizar en `perfiles` para guardar datos extendidos.
       const { user } = data;
       if (user) {
         const { error: profileError } = await supabase
@@ -61,3 +64,4 @@ if (registerForm) {
     }
   });
 }
+

@@ -1,3 +1,6 @@
+// Descripcion: Logica para cargar y gestionar productos favoritos del usuario.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { createNavbar } from "../views/components/navbar.js";
@@ -45,6 +48,7 @@ async function cargarProductosFavoritos() {
 
     // Crear y agregar cada producto al contenedor
     favoritos.forEach((favorito) => {
+      // `favorito.productos` viene del select relacional en Supabase.
       if (favorito.productos) {
         const producto = favorito.productos;
         const productoElement = crearProducto(producto);
@@ -74,3 +78,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 createNavbar();
+

@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="styles/home.css" />
   </head>
   <body>
+    <!-- Contenedor del header, con el nav y las categorias -->
     <header>
+      <!-- Contenedor del nav, con el logo y el menu de vistas -->
       <nav class="nav-wrapper"></nav>
+      <!-- Contenedor de las categorias, con un boton para cada categoria -->
       <div class="categories-container"></div>
     </header>
+    <!-- Contenedor de los productos, con un producto por cada card -->
     <main class="products-container"></main>
+    <!-- Importa el componente del footer, con la informacion de contacto y las redes sociales -->
     <script type="module" src="views/components/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <!-- Importa el archivo de la app, con la logica de la aplicacion -->
     <script src="scripts/app.js" type="module"></script>
   </body>
 </html>

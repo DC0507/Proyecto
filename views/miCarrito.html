@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="../styles/miCarrito.css" />
   </head>
   <body data-requires-auth="true">
+    <!-- Contenedor del header con nav y categorias -->
     <header>
       <nav class="nav-wrapper"></nav>
       <div class="categories-container"></div>
     </header>
+    <!-- Contenedor principal con los productos del carrito -->
     <main class="carrito-container"></main>
+    <!-- Importa footer, alertas y logica del carrito con validacion de sesion -->
     <script type="module" src="./components/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../scripts/carrito.js"></script>

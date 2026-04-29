@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="../styles/miCuenta.css" />
   </head>
   <body data-requires-auth="true">
+    <!-- Contenedor del header con nav y categorias -->
     <header>
       <nav class="nav-wrapper"></nav>
       <div class="categories-container"></div>
     </header>
+    <!-- Contenedor principal con datos del perfil y formulario de actualizacion -->
     <main id="cuenta-container">
       <h1>Informacion de Mi Cuenta</h1>
       <p><strong>Nombre:</strong> <span id="perfil-nombre">Cargando...</span></p>
@@ -30,6 +32,7 @@
         <button type="submit" id="perfil-guardar-btn">Guardar cambios</button>
       </form>
     </main>
+    <!-- Importa footer y scripts de autenticacion/perfil -->
     <script type="module" src="./components/footer.js"></script>
     <script type="module" src="../scripts/auth.js"></script>
     <script type="module" src="../scripts/miCuenta.js"></script>

@@ -1,3 +1,6 @@
+// Descripcion: Logica principal de la pagina de inicio y carga de productos.
+
+// Importaciones de módulos y componentes
 import {supabase} from "./supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { crearCategoria } from "../views/components/categoria.js";
@@ -5,8 +8,10 @@ import { createNavbar } from "../views/components/navbar.js";
 
 // Inicializar la barra de navegación
 await createNavbar();
+
 // Contenedor de los productos
 const productsContainer = document.querySelector(".products-container");
+
 // Contenedor de las categorías
 const categoriesContainer = document.querySelector(".categories-container");
 
@@ -54,13 +59,14 @@ cargarProductos();
 //Llamada a la función para cargar las categorías al iniciar la página
 cargarCategorias();
 
-// Función para manejar la búsqueda de productos ***************************************************************
+// Función para manejar la búsqueda de productos con autocompletado
 const input = document.getElementById("search");
 const sugerencias = document.getElementById("sugerencias");
 
 let timeout = null;
 
 input.addEventListener("input", () => {
+  // Debounce basico para no consultar en cada tecla instantaneamente.
   clearTimeout(timeout);
 
   const valor = input.value.trim();
@@ -77,6 +83,7 @@ input.addEventListener("input", () => {
 });
 
 async function buscarProductos(texto) {
+  // Consulta ligera: solo nombres para autocompletado.
   const { data, error } = await supabase
     .from("productos")
     .select("nombre")  
@@ -92,6 +99,7 @@ async function buscarProductos(texto) {
 }
 
 function mostrarSugerencias(items) {
+  // Reinicia lista antes de pintar nuevas sugerencias.
   sugerencias.innerHTML = "";
 
   if (!items.length) {
@@ -114,7 +122,9 @@ function mostrarSugerencias(items) {
   sugerencias.classList.add("active");
 }
 document.addEventListener("click", (e) => {
+  // Cierra el dropdown cuando el click ocurre fuera del buscador.
   if (!e.target.closest(".search-container")) {
     sugerencias.classList.remove("active");
   }
 });
+

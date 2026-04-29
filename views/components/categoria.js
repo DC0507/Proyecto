@@ -1,6 +1,9 @@
+// Descripcion: Componente para renderizar tarjetas de categorias.
+import { supabase } from "../../scripts/supabase.js";
+
 export function crearCategoria(categoria) {
+  // Calcula la ruta del enlace segun la ubicacion actual de la vista.
   const inViews = window.location.pathname.includes("/views/");
-  const rootPrefix = inViews ? "../" : "";
   const viewPrefix = inViews ? "" : "views/";
   // Crear contenedor principal
   const cardContainer = document.createElement("div");
@@ -13,9 +16,17 @@ export function crearCategoria(categoria) {
   // Enlace a la categoria
   const link = document.createElement("a");
   link.href = `${viewPrefix}categoria.html?catId=${categoria.id}`;
-  cardImg.src =
-    `${rootPrefix}media/images/categories/${categoria.id}.gif` ||
-    `${rootPrefix}media/images/categories/default-category.png`;
+  const { data: categoryImageData } = supabase.storage
+    .from("productos-images")
+    .getPublicUrl(`categories/${categoria.id}.gif`);
+  // Imagen por defecto si falla o no existe la imagen de categoria.
+  const { data: defaultImageData } = supabase.storage
+    .from("productos-images")
+    .getPublicUrl("categories/default-category.png");
+  cardImg.src = categoryImageData?.publicUrl || defaultImageData?.publicUrl;
+  cardImg.onerror = () => {
+    cardImg.src = defaultImageData?.publicUrl || "";
+  };
   link.dataset.catId = categoria.id;
 
   link.appendChild(cardImg);
@@ -28,3 +39,4 @@ export function crearCategoria(categoria) {
 
   return cardContainer;
 }
+

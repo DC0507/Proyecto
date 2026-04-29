@@ -1,3 +1,6 @@
+// Descripcion: Logica para filtrar y mostrar productos por categoria.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { crearCategoria } from "../views/components/categoria.js";
@@ -5,11 +8,13 @@ import { createNavbar } from "../views/components/navbar.js";
 
 // Contenedor de los productos
 const productsContainer = document.querySelector(".products-container");
+
 // Contenedor de las categorías
 const categoriesContainer = document.querySelector(".categories-container");
 
 //Función para cargar los productos desde Supabase
 async function cargarProductos(catId) {
+  // Construye la consulta filtrando por categoria seleccionada.
   let query = supabase
     .from("productos")
     .select("*")
@@ -49,9 +54,11 @@ async function cargarCategorias() {
 
 //Llamada a la función para cargar los productos al iniciar la página
 const urlParams = new URLSearchParams(window.location.search);
+// `catId` define la categoria activa en esta vista.
 const catId = urlParams.get("catId");
 cargarProductos(catId);
 
 //Llamada a la función para cargar las categorías al iniciar la página
 cargarCategorias();
 createNavbar();
+

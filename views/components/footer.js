@@ -1,4 +1,6 @@
+// Descripcion: Componente para renderizar el pie de pagina del sitio.
 function createFooter() {
+  // Crea la estructura HTML del footer con redes sociales.
   const footer = document.createElement("footer");
   footer.className = "site-footer";
   footer.innerHTML = `
@@ -29,8 +31,10 @@ function createFooter() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Evita duplicar el footer si ya existe en el DOM.
   if (!document.querySelector(".site-footer")) {
     document.body.appendChild(createFooter());
   }
 });
+
 

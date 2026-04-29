@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="../styles/login.css" />
   </head>
   <body>
+    <!-- Contenedor del header con la barra de navegacion -->
     <header>
       <nav class="nav-wrapper"></nav>
     </header>
+    <!-- Contenedor principal con formularios de inicio y registro -->
     <main id="login-wrapper">
       <div class="container" id="container">
+        <!-- Formulario de registro -->
         <div class="form-container sign-up-container">
           <form id="register-form">
             <h2>Crear Cuenta</h2>
@@ -24,15 +27,17 @@
             <button class="btn" type="submit">Registrarse</button>
           </form>
         </div>
+        <!-- Formulario de inicio de sesion -->
         <div class="form-container sign-in-container">
           <form id="login-form">
             <h2>Iniciar Sesion</h2>
             <input type="email" id="client-email" placeholder="Ingrese su correo electronico" required />
             <input type="password" id="client-pws" placeholder="Ingrese su contrasena" required />
-            <a href="recuperarPWS.html" class="footer-link">Olvido su contrasena?</a>
+            <a href="recuperarPWS.html" class="footer-link">Olvido su contraseña?</a>
             <button class="btn" type="submit" id="login-btn">Iniciar Sesion</button>
           </form>
         </div>
+        <!-- Panel visual para alternar entre inicio y registro -->
         <div class="overlay-container">
           <div class="overlay">
             <div class="overlay-panel overlay-left">
@@ -49,9 +54,11 @@
         </div>
       </div>
     </main>
+    <!-- Importa el footer y la logica de autenticacion -->
     <script type="module" src="./components/footer.js"></script>
     <script type="module" src="../scripts/login.js"></script>
     <script type="module" src="../scripts/register.js"></script>
+    <!-- Controla la animacion del panel de login/registro -->
     <script>
       const signUpButton = document.getElementById("signUp");
       const signInButton = document.getElementById("signIn");

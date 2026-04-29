@@ -1,6 +1,10 @@
+// Descripcion: Utilidades para mostrar alertas y notificaciones al usuario.
+
+// Carga dinámica de SweetAlert para evitar cargar la librería si no es necesaria.
 let sweetAlertLoader = null;
 
 function loadSweetAlert() {
+  // Reutiliza la libreria si ya fue cargada previamente.
   if (window.Swal) return Promise.resolve(window.Swal);
   if (sweetAlertLoader) return sweetAlertLoader;
 
@@ -16,6 +20,7 @@ function loadSweetAlert() {
 }
 
 export async function showAlert(message, options = {}) {
+  // Normaliza el mensaje para evitar errores cuando llega null/undefined.
   const Swal = await loadSweetAlert();
   const text = typeof message === "string" ? message : String(message ?? "");
 
@@ -28,6 +33,8 @@ export async function showAlert(message, options = {}) {
     });
   }
 
+  // Fallback nativo si SweetAlert no se pudo cargar.
   alert(text);
   return null;
 }
+

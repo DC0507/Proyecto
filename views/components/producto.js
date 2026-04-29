@@ -1,10 +1,10 @@
+// Descripcion: Componente para renderizar productos y gestionar acciones de carrito/favoritos.
 import { supabase } from "../../scripts/supabase.js";
 import { redirectToLogin } from "../../scripts/auth.js";
 import { showAlert } from "../../scripts/alerts.js";
 
 // Funcion para crear un elemento de producto
 export function crearProducto(producto) {
-  const rootPrefix = window.location.pathname.includes("/views/") ? "../" : "";
   // Crear contenedor principal
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("product-card");
@@ -12,7 +12,16 @@ export function crearProducto(producto) {
   // Imagen del producto
   const cardImg = document.createElement("img");
   cardImg.classList.add("product-img");
-  cardImg.src = `${rootPrefix}media/images/products/${producto.id}.webp` || `${rootPrefix}media/images/products/default-product.png`;
+  const { data: productImageData } = supabase.storage
+    .from("productos-images")
+    .getPublicUrl(`products/${producto.id}.webp`);
+  const { data: defaultImageData } = supabase.storage
+    .from("productos-images")
+    .getPublicUrl("products/default-product.webp");
+  cardImg.src = productImageData?.publicUrl || defaultImageData?.publicUrl;
+  cardImg.onerror = () => {
+    cardImg.src = defaultImageData?.publicUrl || "";
+  };
   cardImg.alt = producto.nombre;
 
   // Contenedor de detalles del producto
@@ -43,9 +52,10 @@ export function crearProducto(producto) {
   // Boton favorito
   const btnFavorito = document.createElement("button");
   btnFavorito.classList.add("product-btn-favorite");
-  btnFavorito.innerHTML = "&hearts;"; // icono de corazon
+  setFavoritoVisualState(btnFavorito, false);
   btnFavorito.setAttribute("aria-label", "Agregar a favoritos");
   btnFavorito.addEventListener("click", () => toggleFavorito(producto.id, btnFavorito));
+  inicializarEstadoFavorito(producto.id, btnFavorito);
 
   // Armar estructura
   detalles.appendChild(nombre);
@@ -58,6 +68,40 @@ export function crearProducto(producto) {
   cardContainer.appendChild(btnFavorito);
 
   return cardContainer;
+}
+
+function setFavoritoVisualState(btnElement, esFavorito) {
+  // Cambia icono, clase y etiqueta accesible segun el estado favorito.
+  btnElement.textContent = esFavorito ? "♥" : "♡";
+  btnElement.classList.toggle("active", esFavorito);
+  btnElement.setAttribute("aria-label", esFavorito ? "Quitar de favoritos" : "Agregar a favoritos");
+}
+
+async function inicializarEstadoFavorito(productoId, btnElement) {
+  // Consulta estado inicial para pintar el corazon correctamente al render.
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user) {
+    setFavoritoVisualState(btnElement, false);
+    return;
+  }
+
+  const { data: existingFavorite, error: selectError } = await supabase
+    .from("favoritos")
+    .select("id")
+    .eq("usuario_id", user.id)
+    .eq("producto_id", productoId)
+    .maybeSingle();
+
+  if (selectError) {
+    console.error("Error al inicializar favoritos:", selectError);
+    return;
+  }
+
+  setFavoritoVisualState(btnElement, Boolean(existingFavorite));
 }
 
 // Funcion para agregar un producto al carrito
@@ -163,8 +207,7 @@ async function toggleFavorito(productoId, btnElement) {
       productCard.remove();
     }
 
-    // Remover clase activa del boton
-    btnElement.classList.remove("active");
+    setFavoritoVisualState(btnElement, false);
   } else {
     // Si el producto no esta en favoritos, agregarlo
     const { error: insertError } = await supabase.from("favoritos").insert({
@@ -177,7 +220,7 @@ async function toggleFavorito(productoId, btnElement) {
       return;
     }
 
-    // Agregar clase activa al boton
-    btnElement.classList.add("active");
+    setFavoritoVisualState(btnElement, true);
   }
 }
+

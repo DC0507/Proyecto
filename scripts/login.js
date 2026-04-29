@@ -1,4 +1,6 @@
-// Importamos la configuracion de Supabase para conectar con la base de datos
+// Descripcion: Logica de inicio de sesion de usuarios.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { createNavbar } from "../views/components/navbar.js";
 import { showAlert } from "./alerts.js";
@@ -11,13 +13,14 @@ loginBtn.addEventListener("click", async (e) => {
   const email = document.getElementById("client-email").value.trim();
   const password = document.getElementById("client-pws").value.trim();
 
+  // Intenta autenticar con email/password en Supabase Auth.
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });
 
   if (error) {
-    // Si sale "Invalid login credentials", revisa que no haya espacios en el input
+    // Maneja errores de autenticacion mostrando un mensaje al usuario.
     console.error("Error de Supabase:", error.status, error.message);
     await showAlert(error.message, { icon: "error", title: "Error" });
   } else {
@@ -25,3 +28,4 @@ loginBtn.addEventListener("click", async (e) => {
   }
 });
 createNavbar(); // Llama a la funcion para crear la barra de navegacion al cargar la pagina
+

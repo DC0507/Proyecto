@@ -1,4 +1,6 @@
-// Importamos la configuracion de Supabase para conectar con la base de datos
+// Descripcion: Logica para recuperar la contrasena del usuario.
+
+// Importaciones necesarias
 import { supabase } from "./supabase.js";
 import { showAlert } from "./alerts.js";
 
@@ -16,6 +18,7 @@ if (resetForm) {
     }
 
     const projectBase = window.location.pathname.split("/views/")[0];
+    // Redirige al formulario de nueva contrasena al abrir el enlace del correo.
     const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}${projectBase}/views/actualizarPWS.html`,
     });
@@ -29,3 +32,4 @@ if (resetForm) {
     }
   });
 }
+
