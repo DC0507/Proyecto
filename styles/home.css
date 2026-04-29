@@ -408,3 +408,37 @@ header {
     align-items: flex-start;
   }
 }
+
+.barra-anuncios {
+  background: linear-gradient(120deg, #d16e1d 0%, #dde01a 100%);
+  color: #f8fffb;
+  padding: 12px 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.texto-anuncios {
+  display: inline-block;
+  padding-left: 100%;
+  animation: moverTexto 35s linear infinite;
+}
+
+.texto-anuncios span {
+  margin-right: 70px;
+}
+
+.texto-anuncios span strong {
+  color: #f04f27;
+}
+
+@keyframes moverTexto {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

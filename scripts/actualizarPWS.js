@@ -21,16 +21,19 @@ if (updatePasswordForm) {
     const newPassword = document.getElementById("new-password").value.trim();
     const confirmPassword = document.getElementById("confirm-password").value.trim();
 
+    // Validacion basica de contrasena
     if (!newPassword || !confirmPassword) {
       await showAlert("Por favor, completa ambos campos", { icon: "warning", title: "Campos incompletos" });
       return;
     }
 
+    // Verifica que las contrasenas coincidan y cumplan requisitos minimos.
     if (newPassword !== confirmPassword) {
       await showAlert("Las contraseñas no coinciden", { icon: "warning", title: "Validacion" });
       return;
     }
 
+    // Ejemplo de validacion adicional: longitud minima
     if (newPassword.length < 6) {
       await showAlert("La contraseña debe tener al menos 6 caracteres", { icon: "warning", title: "Validacion" });
       return;
@@ -43,6 +46,7 @@ if (updatePasswordForm) {
       return;
     }
 
+    // Intenta actualizar la contrasena del usuario autenticado temporalmente.
     const { data, error } = await supabase.auth.updateUser({
       password: newPassword,
     });
