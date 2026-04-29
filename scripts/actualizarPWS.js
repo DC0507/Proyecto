@@ -1,7 +1,13 @@
-// Importamos la configuración de Supabase para conectar con la base de datos
+// Importamos la configuracion de Supabase para conectar con la base de datos
 import { supabase } from "./supabase.js";
+import { showAlert } from "./alerts.js";
 
 const updatePasswordForm = document.getElementById("update-password-form");
+
+async function handleInvalidRecoveryLink() {
+  await showAlert("Enlace de recuperacion invalido o expirado. Solicita uno nuevo.", { icon: "error", title: "Enlace invalido" });
+  window.location.href = "recuperarPWS.html";
+}
 
 if (updatePasswordForm) {
   updatePasswordForm.addEventListener("submit", async (e) => {
@@ -11,37 +17,36 @@ if (updatePasswordForm) {
     const confirmPassword = document.getElementById("confirm-password").value.trim();
 
     if (!newPassword || !confirmPassword) {
-      alert("Por favor, completa ambos campos");
+      await showAlert("Por favor, completa ambos campos", { icon: "warning", title: "Campos incompletos" });
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      await showAlert("Las contrasenas no coinciden", { icon: "warning", title: "Validacion" });
       return;
     }
 
     if (newPassword.length < 6) {
-      alert("La contraseña debe tener al menos 6 caracteres");
+      await showAlert("La contrasena debe tener al menos 6 caracteres", { icon: "warning", title: "Validacion" });
       return;
     }
 
     // Check if there's a valid session from the recovery link
     const { data: sessionData } = await supabase.auth.getSession();
     if (!sessionData.session) {
-      alert("Enlace de recuperación inválido o expirado. Solicita uno nuevo.");
-      window.location.href = "recuperarPWS.html";
+      await handleInvalidRecoveryLink();
       return;
     }
 
     const { data, error } = await supabase.auth.updateUser({
-      password: newPassword
+      password: newPassword,
     });
 
     if (error) {
       console.error("Error updating password:", error);
-      alert("Error al actualizar la contraseña: " + error.message);
+      await showAlert("Error al actualizar la contrasena: " + error.message, { icon: "error", title: "Error" });
     } else {
-      alert("Contraseña actualizada exitosamente");
+      await showAlert("Contrasena actualizada exitosamente", { icon: "success", title: "Listo" });
       window.location.href = "../index.html"; // Redirect to home
     }
   });
@@ -49,7 +54,6 @@ if (updatePasswordForm) {
 
 // Check for errors in URL (e.g., expired link)
 const urlParams = new URLSearchParams(window.location.hash.substring(1));
-if (urlParams.get('error')) {
-  alert("Enlace de recuperación inválido o expirado. Solicita uno nuevo.");
-  window.location.href = "recuperarPWS.html";
+if (urlParams.get("error")) {
+  handleInvalidRecoveryLink();
 }

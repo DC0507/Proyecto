@@ -1,5 +1,6 @@
 import { supabase } from "./supabase.js";
 import { createNavbar } from "../views/components/navbar.js";
+import { showAlert } from "./alerts.js";
 
 let currentUser = null;
 
@@ -49,7 +50,7 @@ async function guardarCambiosContacto(event) {
   event.preventDefault();
 
   if (!currentUser) {
-    alert("No hay una sesion activa.");
+    await showAlert("No hay una sesion activa.", { icon: "warning", title: "Atencion" });
     return;
   }
 
@@ -58,7 +59,7 @@ async function guardarCambiosContacto(event) {
   const saveBtn = document.getElementById("perfil-guardar-btn");
 
   if (!correo) {
-    alert("El correo no puede estar vacio.");
+    await showAlert("El correo no puede estar vacio.", { icon: "warning", title: "Campo requerido" });
     return;
   }
 
@@ -89,10 +90,10 @@ async function guardarCambiosContacto(event) {
     }
 
     await cargarPerfilActual();
-    alert("Informacion actualizada correctamente.");
+    await showAlert("Informacion actualizada correctamente.", { icon: "success", title: "Listo" });
   } catch (error) {
     console.error("Error al guardar cambios:", error);
-    alert(`No se pudo actualizar la informacion: ${error.message}`);
+    await showAlert(`No se pudo actualizar la informacion: ${error.message}`, { icon: "error", title: "Error" });
   } finally {
     saveBtn.disabled = false;
     saveBtn.textContent = "Guardar cambios";
@@ -102,7 +103,5 @@ async function guardarCambiosContacto(event) {
 document.addEventListener("DOMContentLoaded", async () => {
   await createNavbar();
   await cargarPerfilActual();
-  document
-    .getElementById("perfil-form")
-    .addEventListener("submit", guardarCambiosContacto);
+  document.getElementById("perfil-form").addEventListener("submit", guardarCambiosContacto);
 });

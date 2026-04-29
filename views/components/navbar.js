@@ -22,9 +22,8 @@ export async function createNavbar() {
     const navbar = document.createElement("nav");
     navbar.classList.add("navbar");
     const ul = document.createElement("ul");
-    ul.innerHTML = `<li><a href="${viewPrefix}misProductos.html">Productos</a></li>
+    ul.innerHTML = `<li><a href="${viewPrefix}misProductos.html">Favoritos</a></li>
             <li><a href="${viewPrefix}miCuenta.html">Mi Cuenta</a></li>
-            <li><a href="${viewPrefix}misPedidos.html">Mis Pedidos</a></li>
             <li><a href="${viewPrefix}miCarrito.html">Mi Carrito</a></li>`;
 
     const { data } = await supabase.auth.getSession();

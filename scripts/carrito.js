@@ -1,5 +1,6 @@
 import { supabase } from "./supabase.js";
 import { createNavbar } from "../views/components/navbar.js";
+import { showAlert } from "./alerts.js";
 
 function eliminarItem(id) {
   supabase
@@ -31,13 +32,13 @@ function actualizarCantidad(id, nuevaCantidad) {
     });
 }
 
-// Hacer la función accesible globalmente
+// Hacer la funcion accesible globalmente
 window.eliminarItem = eliminarItem;
 window.actualizarCantidad = actualizarCantidad;
 
-function renderCarrito(data=[]) {
+function renderCarrito(data = []) {
   const carritoContainer = document.querySelector(".carrito-container");
-  
+
   // Limpiar el contenedor antes de renderizar
   carritoContainer.innerHTML = "";
 
@@ -86,12 +87,12 @@ function renderCarrito(data=[]) {
 
   carritoContainer.appendChild(carritoTable);
 
-  const pagarBtn = document.createElement('button');
-  pagarBtn.textContent = 'Pagar';
-  pagarBtn.className = 'btn-pagar';
-  pagarBtn.addEventListener('click', () => {
-    alert('Funcionalidad de pago no implementada aún');
-    // Aquí puedes disparar el flujo de pago real (API, redirección, etc.)
+  const pagarBtn = document.createElement("button");
+  pagarBtn.textContent = "Pagar";
+  pagarBtn.className = "btn-pagar";
+  pagarBtn.addEventListener("click", async () => {
+    await showAlert("Funcionalidad de pago no implementada aun", { icon: "info", title: "Proximamente" });
+    // Aqui puedes disparar el flujo de pago real (API, redireccion, etc.)
   });
   carritoContainer.appendChild(pagarBtn);
 
@@ -99,51 +100,48 @@ function renderCarrito(data=[]) {
 }
 
 async function cargarCarrito() {
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-  
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
   if (authError || !user) {
     console.error("Usuario no autenticado", authError);
     return;
   }
-  
-  const { data: carritoItems, error } = await supabase
-    .from("carrito")
-    .select("*")
-    .eq("usuario_id", user.id);
-  
+
+  const { data: carritoItems, error } = await supabase.from("carrito").select("*").eq("usuario_id", user.id);
+
   if (error) {
     console.error("Error al cargar el carrito:", error);
     return;
   }
-  
+
   if (!carritoItems || carritoItems.length === 0) {
     renderCarrito([]);
 
     return;
   }
-  
-  // Obtener información completa de productos
-  const productIds = carritoItems.map(item => item.producto_id);
-  const { data: productos, error: productosError } = await supabase
-    .from("productos")
-    .select("*")
-    .in("id", productIds);
-  
+
+  // Obtener informacion completa de productos
+  const productIds = carritoItems.map((item) => item.producto_id);
+  const { data: productos, error: productosError } = await supabase.from("productos").select("*").in("id", productIds);
+
   if (productosError) {
     console.error("Error al cargar productos:", productosError);
     return;
   }
-  
-  // Combinar datos del carrito con información de productos
-  const carritoConProductos = carritoItems.map(carritoItem => {
-    const producto = productos.find(p => p.id === carritoItem.producto_id);
+
+  // Combinar datos del carrito con informacion de productos
+  const carritoConProductos = carritoItems.map((carritoItem) => {
+    const producto = productos.find((p) => p.id === carritoItem.producto_id);
     return {
       ...carritoItem,
       nombre: producto ? producto.nombre : "Producto no encontrado",
-      precio_unitario: producto ? producto.precio : carritoItem.precio_unitario
+      precio_unitario: producto ? producto.precio : carritoItem.precio_unitario,
     };
   });
-  
+
   renderCarrito(carritoConProductos);
 }
 

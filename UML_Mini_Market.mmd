@@ -1,62 +1,54 @@
-classDiagram
-direction LR
+erDiagram
+  CATEGORIAS ||--o{ PRODUCTOS : "id_cat"
+  PRODUCTOS  ||--o|  INVENTARIO : "id_prod"
+  PERFILES   ||--o{ CARRITO : "usuario_id"
+  PRODUCTOS  ||--o{ CARRITO : "producto_id"
+  PERFILES   ||--o{ FAVORITOS : "usuario_id"
+  PRODUCTOS  ||--o{ FAVORITOS : "producto_id"
 
-class Producto {
-    +int codProducto
-    +string nombre
-    +float precio
-    +bool disponible
-}
+  CATEGORIAS {
+    bigint id PK
+    timestamptz created_at
+    text nombre
+  }
 
-class Categoria {
-    +int idCategoria
-    +string nombre
-}
+  PRODUCTOS {
+    bigint id PK
+    timestamptz created_at
+    text nombre
+    double precision precio
+    double precision peso
+    bigint id_cat FK
+  }
 
-class Inventario {
-    +int idInventario
-    +int cantidadDisponible
-}
+  INVENTARIO {
+    bigint id_prod PK
+    timestamptz created_at
+    bigint cantidad
+  }
 
-class Cliente {
-    +int idCliente
-    +string nombre
-    +string correo
-    +string telefono
-    +date fechaRegistro
-    +bool activo
-    registrar() : void
-    editarPerfil() : void
-}
+  PERFILES {
+    uuid id PK
+    text nombre
+    text apellido
+    text correo "UNIQUE"
+    user_role rol
+    text direccion
+    text telefono
+    timestamptz created_at
+  }
 
-class Orden {
-    +int idOrden
-    +int idCliente_FK
-    +date fecha
-    +float total
-    +string estado
-}
+  CARRITO {
+    bigint id PK
+    uuid usuario_id FK
+    bigint producto_id FK
+    integer cantidad
+    timestamptz created_at
+  }
 
-class DetalleOrden {
-    +int idDetalle
-    +int codProducto_FK
-    +int cantidad
-    +float precioUnitario
-    +float subtotal
-
-}
-
-class Pago {
-    +int idPago
-    +string metodo
-    +float monto
-    +date fecha
-    +string estado
-}
-
-Categoria "1" --> "0..*" Producto
-Producto "1" --> "1" Inventario
-Cliente "1" --> "0..*" Orden
-Orden "1" --> "1..*" DetalleOrden
-DetalleOrden "0..*" --> "1" Producto
-Orden "1" -- "0..1" Pago
+  FAVORITOS {
+    bigint id PK
+    uuid usuario_id FK
+    bigint producto_id FK
+    timestamptz created_at
+  }

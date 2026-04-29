@@ -1,8 +1,9 @@
 import { supabase } from "./supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { createNavbar } from "../views/components/navbar.js";
+import { showAlert } from "./alerts.js";
 
-// Función para cargar los productos favoritos del usuario
+// Funcion para cargar los productos favoritos del usuario
 async function cargarProductosFavoritos() {
   // Obtener el usuario actual
   const {
@@ -10,10 +11,10 @@ async function cargarProductosFavoritos() {
     error: authError,
   } = await supabase.auth.getUser();
 
-  // Verificar si el usuario está autenticado
+  // Verificar si el usuario esta autenticado
   if (authError || !user) {
     console.error("Authentication failed:", authError);
-    alert("Debes iniciar sesión para ver tus productos favoritos.");
+    await showAlert("Debes iniciar sesion para ver tus productos favoritos.", { icon: "warning", title: "Sesion requerida" });
     window.location.href = "login.html";
     return;
   }
@@ -29,7 +30,7 @@ async function cargarProductosFavoritos() {
 
     if (favoritosError) {
       console.error("Error al cargar favoritos:", favoritosError);
-      alert("Error al cargar tus productos favoritos.");
+      await showAlert("Error al cargar tus productos favoritos.", { icon: "error", title: "Error" });
       return;
     }
 
@@ -38,8 +39,7 @@ async function cargarProductosFavoritos() {
 
     // Verificar si hay favoritos
     if (!favoritos || favoritos.length === 0) {
-      productosContainer.innerHTML =
-        "<p>No has agregado productos a favoritos.</p>";
+      productosContainer.innerHTML = "<p>No has agregado productos a favoritos.</p>";
       return;
     }
 
@@ -53,11 +53,11 @@ async function cargarProductosFavoritos() {
     });
   } catch (error) {
     console.error("Error inesperado:", error);
-    alert("Error al cargar tus productos favoritos.");
+    await showAlert("Error al cargar tus productos favoritos.", { icon: "error", title: "Error" });
   }
 }
 
-// Cargar productos cuando el DOM esté listo
+// Cargar productos cuando el DOM este listo
 document.addEventListener("DOMContentLoaded", cargarProductosFavoritos);
 
 // Escuchar cambios en los productos cuando se elimina un favorito

@@ -1,17 +1,18 @@
 #cuenta-container {
-  width: min(760px, calc(100% - 32px));
-  margin: 28px auto;
-  padding: 24px;
-  border-radius: 10px;
+  width: min(820px, calc(100% - 32px));
+  margin: 32px auto 40px;
+  padding: 26px;
+  border-radius: 22px;
   background: #ffffff;
-  border: 1px solid #d9e2ec;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d8e3f6;
+  box-shadow: 0 18px 36px rgba(20, 56, 120, 0.12);
 }
 
 #cuenta-container h1 {
   margin-bottom: 18px;
-  color: #1a75cf;
-  font-size: 28px;
+  color: #16346a;
+  font-size: 2rem;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 #cuenta-container p {
@@ -19,72 +20,69 @@
   align-items: center;
   gap: 8px;
   padding: 12px 0;
-  border-bottom: 1px solid #eef2f7;
-  color: #243b53;
-}
-
-#cuenta-container p:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #e9f1ff;
+  color: #2d456f;
 }
 
 #cuenta-container strong {
-  min-width: 92px;
-  color: #102a43;
+  min-width: 95px;
+  color: #173a6d;
 }
 
 #cuenta-container span {
-  color: #334e68;
+  color: #355a93;
   word-break: break-word;
 }
 
 #perfil-form {
-  margin-top: 18px;
-  padding-top: 18px;
+  margin-top: 20px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-top: 1px solid #d9e2ec;
+  border-top: 1px solid #dae6fb;
 }
 
 #perfil-form h2 {
   margin: 0 0 8px;
-  color: #1a75cf;
-  font-size: 20px;
+  color: #1f4d92;
+  font-size: 1.3rem;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 #perfil-form label {
-  color: #102a43;
+  color: #1d3f73;
   font-weight: 600;
 }
 
 #perfil-form input {
   width: 100%;
-  border: 1px solid #bcccdc;
-  border-radius: 8px;
-  padding: 10px 12px;
+  border: 1px solid #c9d8f4;
+  border-radius: 12px;
+  padding: 11px 12px;
   font-size: 14px;
-  color: #243b53;
+  color: #1a2f52;
 }
 
 #perfil-form input:focus {
   outline: none;
-  border-color: #1a75cf;
-  box-shadow: 0 0 0 2px rgba(26, 117, 207, 0.15);
+  border-color: #1d5fd1;
+  box-shadow: 0 0 0 3px rgba(29, 95, 209, 0.14);
 }
 
 #perfil-guardar-btn {
   margin-top: 10px;
   border: none;
-  border-radius: 8px;
-  background: #1a75cf;
-  color: #fff;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #1d5fd1, #1a8be0);
+  color: #ffffff;
   font-weight: 700;
-  padding: 10px 14px;
+  padding: 11px 14px;
   cursor: pointer;
 }
 
 #perfil-guardar-btn:hover {
-  background: #145ea8;
+  filter: brightness(1.05);
 }
 
 #perfil-guardar-btn:disabled {
@@ -95,12 +93,13 @@
 @media (max-width: 640px) {
   #cuenta-container {
     width: calc(100% - 20px);
-    margin: 20px auto;
+    margin: 22px auto;
     padding: 16px;
+    border-radius: 16px;
   }
 
   #cuenta-container h1 {
-    font-size: 24px;
+    font-size: 1.6rem;
   }
 
   #cuenta-container p {
@@ -113,3 +112,4 @@
     min-width: 0;
   }
 }
+

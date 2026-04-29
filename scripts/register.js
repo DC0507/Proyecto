@@ -1,11 +1,12 @@
-// Importamos la configuración de Supabase para conectar con la base de datos
+// Importamos la configuracion de Supabase para conectar con la base de datos
 import { supabase } from "./supabase.js";
+import { showAlert } from "./alerts.js";
 
 const registerForm = document.getElementById("register-form");
 
 if (registerForm) {
   registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Evita que el formulario recargue la página
+    e.preventDefault(); // Evita que el formulario recargue la pagina
 
     const name = document.getElementById("register-name").value.trim();
     const lastname = document.getElementById("register-lastname").value.trim();
@@ -13,9 +14,9 @@ if (registerForm) {
     const phone = document.getElementById("register-phone").value.trim();
     const password = document.getElementById("register-password").value.trim();
 
-    // Validación básica
+    // Validacion basica
     if (!name || !lastname || !email || !phone || !password) {
-      alert("Por favor, completa todos los campos");
+      await showAlert("Por favor, completa todos los campos", { icon: "warning", title: "Campos incompletos" });
       return;
     }
 
@@ -26,32 +27,35 @@ if (registerForm) {
 
     if (error) {
       console.error("Error de Supabase:", error.status, error.message);
-      alert(error.message);
+      await showAlert(error.message, { icon: "error", title: "Error" });
     } else {
       // Insertar o actualizar en perfiles
       const { user } = data;
       if (user) {
         const { error: profileError } = await supabase
-          .from('perfiles')
-          .upsert([
-            {
-              id: user.id,
-              nombre: name,
-              apellido: lastname,
-              correo: email,
-              telefono: phone,
-            }
-          ], { onConflict: 'id' });
+          .from("perfiles")
+          .upsert(
+            [
+              {
+                id: user.id,
+                nombre: name,
+                apellido: lastname,
+                correo: email,
+                telefono: phone,
+              },
+            ],
+            { onConflict: "id" },
+          );
 
         if (profileError) {
           console.error("Error upserting profile:", profileError);
-          alert("Registro exitoso, pero error al guardar perfil: " + profileError.message);
+          await showAlert("Registro exitoso, pero error al guardar perfil: " + profileError.message, { icon: "warning", title: "Atencion" });
         } else {
-          alert("Usuario registrado con éxito!");
-          window.location.href = `../index.html`; // Redirige al usuario a la página principal después de registrarse
+          await showAlert("Usuario registrado con exito!", { icon: "success", title: "Registro exitoso" });
+          window.location.href = `../index.html`; // Redirige al usuario a la pagina principal despues de registrarse
         }
       } else {
-        alert("Usuario registrado con éxito!");
+        await showAlert("Usuario registrado con exito!", { icon: "success", title: "Registro exitoso" });
         window.location.href = `../index.html`;
       }
     }
