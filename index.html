@@ -50,6 +50,20 @@
         >
       </div>
     </div>
+    <!--Carrusel de Anuncios-->
+    <script>
+      // Obtiene URL publica del logo alojado en el bucket.
+      const { data: logoData } = supabase.storage
+        .from("productos-images")
+        .getPublicUrl("anuncios/anuncio1.png");
+    </script>
+    <div
+      id="carouselExampleAutoplaying"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+    </div>
+    <!---->
     <!-- Contenedor de los productos, con un producto por cada card -->
     <main class="products-container"></main>
     <!-- Importa el componente del footer, con la informacion de contacto y las redes sociales -->
@@ -57,5 +71,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <!-- Importa el archivo de la app, con la logica de la aplicacion -->
     <script src="scripts/app.js" type="module"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

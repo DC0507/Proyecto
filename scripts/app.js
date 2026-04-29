@@ -1,7 +1,7 @@
 // Descripcion: Logica principal de la pagina de inicio y carga de productos.
 
 // Importaciones de módulos y componentes
-import {supabase} from "./supabase.js";
+import { supabase } from "./supabase.js";
 import { crearProducto } from "../views/components/producto.js";
 import { crearCategoria } from "../views/components/categoria.js";
 import { createNavbar } from "../views/components/navbar.js";
@@ -86,7 +86,7 @@ async function buscarProductos(texto) {
   // Consulta ligera: solo nombres para autocompletado.
   const { data, error } = await supabase
     .from("productos")
-    .select("nombre")  
+    .select("nombre")
     .ilike("nombre", `%${texto}%`)
     .limit(5);
 
@@ -107,7 +107,7 @@ function mostrarSugerencias(items) {
     return;
   }
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = item.nombre;
 
@@ -127,4 +127,50 @@ document.addEventListener("click", (e) => {
     sugerencias.classList.remove("active");
   }
 });
+
+//Carrusel de anuncios
+const carruselContainer = document.querySelector("#carouselExampleAutoplaying");
+
+// Obtiene URL publica del logo alojado en el bucket.
+const { data: anuncio1 } = supabase.storage
+  .from("productos-images")
+  .getPublicUrl("anuncios/anuncio1.png");
+
+const { data: anuncio2 } = supabase.storage
+  .from("productos-images")
+  .getPublicUrl("anuncios/anuncio2.png");
+
+  const { data: anuncio3 } = supabase.storage
+  .from("productos-images")
+  .getPublicUrl("anuncios/anuncio3.png");
+carruselContainer.innerHTML = `
+<div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="${anuncio1.publicUrl}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="${anuncio2.publicUrl}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="${anuncio3.publicUrl}" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>`;
 

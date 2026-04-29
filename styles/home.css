@@ -442,3 +442,15 @@ header {
     transform: translateX(-100%);
   }
 }
+
+#carouselExampleAutoplaying {
+  width: 95%;
+  max-width: 1400px;
+  margin: 28px auto 0 auto;
+}
+
+#carouselExampleAutoplaying .carousel-item img {
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  height: 300px;
+}
